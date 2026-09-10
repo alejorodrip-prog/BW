@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #274373;
+  --ink-2: #33538A;
+  --ink-3: #4260A0;
+  --paper: #F3FAFF;
+  --paper-2: #E4EFF9;
+  --surface: #FFFFFF;
+  --line: #C8D7E3;
+  --muted: #56697A;
+  --muted-2: #8A9CAD;
+  --water-deep: #1B2F52;
+  --orange: #E85D04;
+  --orange-deep: #C64C00;
+  --success: #2A6B4A;
+  --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); font-family: var(--font-sans); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-sans); font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; margin: 0; text-wrap: balance; color: var(--ink); }
+p { margin: 0; text-wrap: pretty; color: var(--ink); }
+a { color: inherit; text-decoration: none; transition: color 160ms ease, opacity 160ms ease; }
+a:hover { color: var(--orange); }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+input, select { font-family: inherit; }
+img { display: block; max-width: 100%; }
+::selection { background: var(--ink); color: var(--paper); }
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 1px; }
+@keyframes bwPulseRing { 0% { transform: scale(1); opacity: 0.55; } 100% { transform: scale(2.6); opacity: 0; } }
+@keyframes bwRise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.bw-unit { animation: bwRise 560ms cubic-bezier(0.22,1,0.36,1) both; }
+.bw-unit:nth-child(2) { animation-delay: 55ms; }
+.bw-unit:nth-child(3) { animation-delay: 110ms; }
+.bw-unit:nth-child(4) { animation-delay: 55ms; }
+.bw-unit:nth-child(5) { animation-delay: 110ms; }
+.bw-unit:nth-child(6) { animation-delay: 165ms; }
+.bw-unit:nth-child(n+7) { animation-delay: 200ms; }
+.bw-lift { transition: transform 220ms cubic-bezier(0.22,1,0.36,1), background 200ms ease, color 200ms ease, border-color 200ms ease; }
+.bw-lift:hover { transform: translateY(-2px); }
+.bw-lift:active { transform: translateY(0) scale(0.99); }
+@media (prefers-reduced-motion: reduce) {
+  .bw-unit { animation: none; }
+  .bw-lift, .bw-lift:hover, .bw-lift:active { transform: none; transition: none; }
+}
+.bw-mono { font-family: var(--font-mono); font-feature-settings: "ss01", "cv11"; }
+.bw-num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.bw-unit { transition: border-color 220ms ease, transform 220ms cubic-bezier(0.22,1,0.36,1), box-shadow 220ms ease; }
+.bw-unit:hover .bw-unit-name { color: var(--orange); }
+.bw-unit-name { transition: color 180ms ease; }
+.bw-unit:hover { border-color: var(--ink); box-shadow: 0 16px 34px -26px rgba(39,67,115,0.5); }
+</style>
+</helmet>
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+    <rect width="400" height="400" fill="#274373"></rect>
+    <g transform="translate(200 200)" fill="#F3FAFF" text-anchor="middle" font-family="'Geist',system-ui,sans-serif">
+      <text y="-6" font-size="60" font-weight="700" letter-spacing="-2">28</text>
+      <text y="40" font-size="17" font-weight="500" letter-spacing="4" opacity="0.72">UNITS IN STOCK</text>
+    </g>
+    <rect x="40" y="40" width="320" height="320" fill="none" stroke="#F3FAFF" stroke-opacity="0.2" stroke-width="1"></rect>
+  </svg>
+</template>
+
+<div style="background: var(--paper); color: var(--ink); overflow-x: clip;">
+
+<!-- ===================== HEADER ===================== -->
+<header style="position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(11,14,18,0.94); backdrop-filter: blur(14px) saturate(140%); border-bottom: 1px solid rgba(255,255,255,0.06); color: white;">
+  <div style="max-width: 1440px; margin: 0 auto; padding: 0 40px; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 32px;">
+    <a href="BWEG%20Homepage%20v3.dc.html" style="display: flex; align-items: center; flex-shrink: 0;" aria-label="Blue Water Equipment Group — home">
+      <img src="./logo-bw-white.png" alt="Blue Water Equipment Group" style="height: 34px; width: auto; display: block;">
+    </a>
+    <nav aria-label="Primary" style="display: flex; align-items: center; gap: 24px; font-size: 13px; font-weight: 500; letter-spacing: -0.005em; flex: 1 1 auto; min-width: 0; overflow-x: auto; white-space: nowrap; scrollbar-width: none;">
+      <a href="#inventory" aria-current="page" style="color: white; border-bottom: 2px solid var(--orange); padding-bottom: 3px;">Inventory</a>
+      <a href="BWEG%20Homepage%20v3.dc.html#rentals">Rentals</a>
+      <a href="BWEG%20Homepage%20v3.dc.html#parts">Parts</a>
+      <a href="BWEG%20Homepage%20v3.dc.html#service">Service</a>
+      <a href="BWEG%20Homepage%20v3.dc.html#categories">Other Brands</a>
+      <a href="BWEG%20Homepage%20v3.dc.html#finance">Financing</a>
+      <a href="BWEG%20Homepage%20v3.dc.html#locations">Locations</a>
+      <a href="BWEG%20Homepage%20v3.dc.html#company">Company</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 14px; flex-shrink: 0;">
+      <button type="button" onClick="{{ toggleAdvisor }}" aria-label="Ask our AI Advisor" style="display: inline-flex; align-items: center; gap: 8px; padding: 9px 13px; border: 1px solid rgba(255,255,255,0.24); border-radius: 999px; font-size: 12.5px; font-weight: 500; color: white;" style-hover="{{ whiteGhostHoverStyle }}">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        Ask AI
+      </button>
+      <a href="tel:+18435550142" class="bw-mono" style="font-size: 12.5px; letter-spacing: 0.02em; font-weight: 500;">(843)&nbsp;555-0142</a>
+      <a href="#inventory" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--orange); color: white; font-size: 12.5px; font-weight: 600; border-radius: 2px; white-space: nowrap;" style-hover="{{ orangeHoverStyle }}">
+        Search Inventory
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== PAGE HEADER BAND ===================== -->
+<section style="background: var(--ink); color: white; padding: 148px 40px 72px;">
+  <div style="max-width: 1440px; margin: 0 auto;">
+    <nav aria-label="Breadcrumb" class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 40px;">
+      <a href="BWEG%20Homepage%20v3.dc.html" style="color: rgba(255,255,255,0.5);">Home</a>
+      <span style="padding: 0 8px;">/</span>
+      <span style="color: white;">Inventory</span>
+    </nav>
+    <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: end;">
+      <h1 style="color: white; font-size: clamp(44px, 6vw, 84px); line-height: 0.96; letter-spacing: -0.04em; font-weight: 500; max-width: 14ch;">Browse Our Inventory</h1>
+      <div style="padding-bottom: 10px;">
+        <p style="color: rgba(255,255,255,0.74); font-size: 17px; line-height: 1.55; max-width: 46ch; margin-bottom: 24px;">28 units in stock across Tractors, Mowers, Utility Vehicles, and Attachments. Every one available to buy or, where noted, to rent.</p>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="position: relative; display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px;">
+            <span style="position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--success); animation: bwPulseRing 1.8s ease-out infinite;"></span>
+            <span style="position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--success);"></span>
+          </span>
+          <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.7);">Live inventory, updated daily</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FILTER BAR ===================== -->
+<section id="inventory" style="background: var(--surface); border-bottom: 1px solid var(--line); position: sticky; top: 68px; z-index: 60;">
+  <div style="max-width: 1440px; margin: 0 auto; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;">
+    <div role="group" aria-label="Filter by category" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+      <sc-for list="{{ pills }}" as="pill" hint-placeholder-count="5">
+        <button type="button" onClick="{{ pill.onClick }}" aria-pressed="{{ pill.active }}" style="{{ pill.style }}">
+          <span>{{ pill.label }}</span>
+          <span class="bw-num" style="{{ pill.countStyle }}">{{ pill.count }}</span>
+        </button>
+      </sc-for>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+      <label style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 2px;">
+        <span class="bw-mono" style="font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);">Series</span>
+        <select onChange="{{ onSeriesChange }}" value="{{ series }}" style="appearance: none; border: none; background: transparent; font-size: 14px; font-weight: 500; color: var(--ink); outline: none; cursor: pointer;">
+          <sc-for list="{{ seriesOptions }}" as="opt" hint-placeholder-count="3">
+            <option value="{{ opt }}">{{ opt }}</option>
+          </sc-for>
+        </select>
+      </label>
+      <label style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 2px; background: var(--surface);">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4.2-4.2"></path></svg>
+        <input type="search" onInput="{{ onQueryInput }}" placeholder="Search model or series" aria-label="Search inventory" style="border: none; background: transparent; font-size: 14px; color: var(--ink); outline: none; width: 210px;">
+      </label>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RESULTS ===================== -->
+<section style="background: var(--paper); padding: 48px 40px 120px;">
+  <div style="max-width: 1440px; margin: 0 auto;">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 32px;">
+      <div class="bw-mono" style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted);">{{ resultLabel }}</div>
+      <div class="bw-mono" style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-2);">Sorted by category · series</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 28px;">
+      <sc-for list="{{ units }}" as="unit" hint-placeholder-count="9">
+        <article class="bw-unit" style="background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column;">
+          <div role="img" aria-label="{{ unit.alt }}" style="aspect-ratio: 4/3; background: repeating-linear-gradient(135deg, #E7EEF5 0px, #E7EEF5 10px, #DFE8F1 10px, #DFE8F1 20px); display: flex; flex-direction: column; justify-content: space-between; gap: 12px; padding: 14px;">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+              <span class="bw-mono" style="font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); background: rgba(255,255,255,0.94); padding: 5px 9px;">{{ unit.badge }}</span>
+              <span class="bw-mono" style="font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); background: rgba(255,255,255,0.94); padding: 5px 9px; white-space: nowrap;">360° coming soon</span>
+            </div>
+            <span style="font-size: 12px; line-height: 1.4; color: var(--muted); background: rgba(255,255,255,0.9); padding: 8px 10px; border-radius: 3px;">{{ unit.photoNote }}</span>
+          </div>
+          <div style="padding: 22px; display: flex; flex-direction: column; gap: 14px; flex: 1;">
+            <div>
+              <h2 class="bw-unit-name" style="font-size: 22px; font-weight: 500; letter-spacing: -0.025em; margin-bottom: 8px;">{{ unit.name }}</h2>
+              <p style="font-size: 14px; line-height: 1.5; color: var(--muted);">{{ unit.config }}</p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 9px; margin-top: auto;">
+              <span style="position: relative; display: inline-flex; align-items: center; justify-content: center; width: 12px; height: 12px;">
+                <span style="position: absolute; width: 10px; height: 10px; border-radius: 50%; background: var(--success); animation: bwPulseRing 1.8s ease-out infinite;"></span>
+                <span style="position: relative; width: 7px; height: 7px; border-radius: 50%; background: var(--success);"></span>
+              </span>
+              <span style="font-size: 13px; font-weight: 500; color: var(--ink); white-space: nowrap;">In Stock</span>
+              <span class="bw-mono" style="margin-left: auto; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-2);">{{ unit.series }}</span>
+            </div>
+            <a href="#inventory" class="bw-lift" style="display: inline-flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px 18px; background: var(--ink); color: white; font-weight: 500; font-size: 13.5px; border-radius: 2px;" style-hover="{{ inkHoverStyle }}">
+              Request a Quote
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+            </a>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+      <div style="padding: 88px 40px; border: 1px dashed var(--line); border-radius: 10px; text-align: center; background: var(--surface);">
+        <p style="font-size: 18px; line-height: 1.55; color: var(--ink); max-width: 46ch; margin: 0 auto 24px;">No units currently match this filter. Try a different category, or ask our AI Advisor what's available.</p>
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+          <button type="button" onClick="{{ resetFilters }}" style="padding: 14px 20px; background: var(--ink); color: white; font-weight: 500; font-size: 14px; border-radius: 2px;" style-hover="{{ inkHoverStyle }}">Show All Units</button>
+          <button type="button" onClick="{{ toggleAdvisor }}" style="padding: 14px 20px; border: 1px solid var(--line); color: var(--ink); font-weight: 500; font-size: 14px; border-radius: 2px;" style-hover="{{ ghostHoverStyle }}">Ask Our AI Advisor</button>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+</section>
+
+<!-- ===================== RENTAL CROSS-LINK ===================== -->
+<section style="background: var(--water-deep); color: white; padding: 88px 40px;">
+  <div style="max-width: 1440px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
+    <div>
+      <div class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange); margin-bottom: 16px;">Rentals</div>
+      <h2 style="color: white; font-size: clamp(28px, 3.4vw, 44px); font-weight: 500; letter-spacing: -0.03em; max-width: 24ch;">Not every job needs a purchase.</h2>
+    </div>
+    <a href="BWEG%20Homepage%20v3.dc.html#rentals" style="display: inline-flex; align-items: center; gap: 12px; padding: 18px 24px; background: var(--orange); color: white; font-weight: 600; font-size: 15px; border-radius: 2px;" style-hover="{{ orangeHoverStyle }}">
+      Explore Rentals
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer style="background: var(--ink); color: rgba(255,255,255,0.62); padding: 72px 40px 32px;">
+  <div style="max-width: 1440px; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: 1.5fr repeat(4, 1fr); gap: 40px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <div>
+        <div style="margin-bottom: 22px;">
+          <img src="./logo-bw-white.png" alt="Blue Water Equipment Group" style="height: 36px; width: auto; display: block; opacity: 0.95;">
+        </div>
+        <p style="font-size: 13px; line-height: 1.55; max-width: 34ch; margin-bottom: 18px; color: rgba(255,255,255,0.62);">A network of authorized Kubota dealerships across South Carolina, North Carolina, and Georgia — selling, renting, and servicing — backed by Blue Water Advisors.</p>
+        <div class="bw-mono" style="font-size: 12px; letter-spacing: 0.04em; color: rgba(255,255,255,0.8);">(843) 555-0142</div>
+      </div>
+      <div>
+        <div class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: white; margin-bottom: 18px;">Buy</div>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 13.5px;">
+          <li><a href="#inventory" style="color: rgba(255,255,255,0.72);" style-hover="{{ footerLinkHoverStyle }}">Inventory</a></li>
+          <li><a href="BWEG%20Homepage%20v3.dc.html#categories" style="color: rgba(255,255,255,0.72);" style-hover="{{ footerLinkHoverStyle }}">Other Brands</a></li>
+          <li><a href="#inventory" style="color: rgba(255,255,255,0.72);" style-hover="{{ footerLinkHoverStyle }}">Used Equipment</a></li>
+          <li><a href="#inventory" style="color: rgba(255,255,255,0.72);" style-hover="{{ footerLinkHoverStyle }}">Specials</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: white; margin-bottom: 18px;">Rentals</div>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 13.5px;">
+          <li><a href="BWEG%20Homepage%20v3.dc.html#rentals" style="color: rgba(255,255,255,0.72);" style-hover="{{ footerLinkHoverStyle }}">Rental Equipment</a></li>
+          <li><a href="BWEG%20Homepage%20v3.dc.html#rentals" style="color: rgba(255,255,255,0.72);" style-hover="{{ footerLinkHoverStyle }}">Rental Attachments</a></li>
+          <li><a href="BWEG%20Homepage%20v3.dc.html#rentals" style="color: rgba(255,255,255,0.72);" style-hover="{{ footerLinkHoverStyle }}">Rental Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: white; margin-bottom: 18px;">Support</div>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 13.5px;">
+          <li><a href="BWEG%20Homepage%20v3.dc.html#parts" style="color: rgba(255,255,255,0.72);" style-hover="{{ footerLinkHoverStyle }}">Parts</a></li>
+          <li><a href="BWEG%20Homepage%20v3.dc.html#service" style="color: rgba(255,255,255,0.72);" style-hover="{{ footerLinkHoverStyle }}">Service</a></li>
+          <li><a href="BWEG%20Homepage%20v3.dc.html#finance" style="color: rgba(255,255,255,0.72);" style-hover="{{ footerLinkHoverStyle }}">Financing</a></li>
+          <li><a href="#" style="color: rgba(255,255,255,0.72);" style-hover="{{ footerLinkHoverStyle }}">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: white; margin-bottom: 18px;">Company</div>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 13.5px;">
+          <li><a href="BWEG%20Homepage%20v3.dc.html#company" style="color: rgba(255,255,255,0.72);" style-hover="{{ footerLinkHoverStyle }}">About</a></li>
+          <li><a href="#" style="color: rgba(255,255,255,0.72);" style-hover="{{ footerLinkHoverStyle }}">Careers</a></li>
+          <li><a href="BWEG%20Homepage%20v3.dc.html#locations" style="color: rgba(255,255,255,0.72);" style-hover="{{ footerLinkHoverStyle }}">Locations</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="padding-top: 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.42);" class="bw-mono">
+      <div style="letter-spacing: 0.06em;">© 2026 Blue Water Equipment Group. All Rights Reserved.</div>
+      <div style="letter-spacing: 0.06em;">Charleston · Columbia · Greenville · Charlotte · Raleigh · Atlanta · Savannah</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== AI ADVISOR DOCK ===================== -->
+<div style="{{ dockStyle }}">
+  <div style="{{ dockPanelStyle }}" role="dialog" aria-label="AI Equipment Advisor">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; background: var(--ink); color: white;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--success);"></span>
+        <span style="font-size: 13.5px; font-weight: 500;">Equipment Advisor</span>
+      </div>
+      <button type="button" onClick="{{ closeAdvisor }}" aria-label="Close advisor" style="color: rgba(255,255,255,0.7); display: inline-flex;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg>
+      </button>
+    </div>
+    <div style="padding: 18px; display: flex; flex-direction: column; gap: 14px; background: var(--paper);">
+      <p style="font-size: 14px; line-height: 1.5; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px 12px 12px 3px; color: var(--ink);">Tell me the job — acreage, terrain, budget, buying or renting — and I'll pull real units in stock near you.</p>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <span style="padding: 8px 12px; border: 1px solid var(--line); background: var(--surface); font-size: 12.5px; border-radius: 999px;">Which mower for 3 acres?</span>
+        <span style="padding: 8px 12px; border: 1px solid var(--line); background: var(--surface); font-size: 12.5px; border-radius: 999px;">Loader for an L2502</span>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-top: 1px solid var(--line); background: var(--surface);">
+      <span style="flex: 1; font-size: 13.5px; color: var(--muted-2);">Type your question…</span>
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--orange); color: white; border-radius: 50%;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+      </span>
+    </div>
+  </div>
+  <button type="button" onClick="{{ toggleAdvisor }}" aria-label="Ask our AI Advisor" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 20px; background: var(--ink); color: white; border-radius: 999px; font-size: 14px; font-weight: 500; box-shadow: 0 14px 34px -18px rgba(8,34,56,0.8); align-self: flex-end;" style-hover="{{ inkHoverStyle }}">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    Ask Our AI Advisor
+  </button>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+const UNITS = [
+  // TRACTORS (8)
+  { group: 'Tractors', series: 'BX Series', badge: 'Sub-Compact Tractor', name: 'Kubota BX23S', config: 'Tractor-Loader-Backhoe. Diesel. Loader and backhoe on one compact chassis, for digging and grading a plain tractor can\u2019t do.', photoNote: 'Photo pending: Kubota BX23S, sub-compact TLB' },
+  { group: 'Tractors', series: 'BX Series', badge: 'Sub-Compact Tractor', name: 'Kubota BX2380', config: 'Diesel. Loader and mower-deck package.', photoNote: 'Photo pending: Kubota BX2380, loader + deck' },
+  { group: 'Tractors', series: 'BX Series', badge: 'Sub-Compact Tractor', name: 'Kubota BX2380', config: 'Diesel. Mower-deck configuration.', photoNote: 'Photo pending: Kubota BX2380, mower-deck build' },
+  { group: 'Tractors', series: 'B Series', badge: 'Compact Tractor', name: 'Kubota B2601', config: 'Diesel / HST. Compact platform for small acreage and hobby farms, a step up from the BX line.', photoNote: 'Photo pending: Kubota B2601, compact tractor' },
+  { group: 'Tractors', series: 'L Series', badge: 'Compact Tractor', name: 'Kubota L2502', config: 'Diesel / HST. Mid-size compact tractor for general property and light agricultural work.', photoNote: 'Photo pending: Kubota L2502, compact tractor' },
+  { group: 'Tractors', series: 'LX Series', badge: 'Compact Tractor', name: 'Kubota LX2620', config: 'Diesel / HST. Higher-spec compact line, more comfort and capability at the top of the compact range.', photoNote: 'Photo pending: Kubota LX2620, compact tractor' },
+  { group: 'Tractors', series: 'MX Series', badge: 'Utility Tractor', name: 'Kubota MX6000 (Cab)', config: 'Diesel / HST. Enclosed cab. Largest tractor platform in current stock.', photoNote: 'Photo pending: Kubota MX6000, cab utility tractor' },
+  { group: 'Tractors', series: 'MX Series', badge: 'Utility Tractor', name: 'Kubota MX6000', config: 'Diesel / HST. Open-station.', photoNote: 'Photo pending: Kubota MX6000, open-station utility tractor' },
+
+  // MOWERS (14)
+  { group: 'Mowers', series: 'ZD Series', badge: 'Diesel Zero-Turn', name: 'Kubota ZD1011', config: '54" deck. Diesel zero-turn, built for commercial and high-hour production mowing.', photoNote: 'Photo pending: Kubota ZD1011, 54" diesel zero-turn' },
+  { group: 'Mowers', series: 'ZD Series', badge: 'Diesel Zero-Turn', name: 'Kubota ZD1211', config: '60" deck. Diesel zero-turn for commercial production mowing.', photoNote: 'Photo pending: Kubota ZD1211, 60" diesel zero-turn' },
+  { group: 'Mowers', series: 'ZD Series', badge: 'Diesel Zero-Turn', name: 'Kubota ZD1211L', config: '72" deck. Larger-deck variant of the ZD1211.', photoNote: 'Photo pending: Kubota ZD1211L, 72" diesel zero-turn' },
+  { group: 'Mowers', series: 'Z200 Series', badge: 'Residential Zero-Turn', name: 'Kubota Z232', config: '42" deck. Gas. Entry zero-turn, sized for properties under about 5 acres.', photoNote: 'Photo pending: Kubota Z232, 42" gas zero-turn' },
+  { group: 'Mowers', series: 'Z200 Series', badge: 'Residential Zero-Turn', name: 'Kubota Z242', config: '48" deck. Gas. Entry zero-turn for residential properties.', photoNote: 'Photo pending: Kubota Z242, 48" gas zero-turn' },
+  { group: 'Mowers', series: 'Z200 Series', badge: 'Residential Zero-Turn', name: 'Kubota Z252', config: '54" deck. Gas. Entry zero-turn for residential properties.', photoNote: 'Photo pending: Kubota Z252, 54" gas zero-turn' },
+  { group: 'Mowers', series: 'Z400 Series', badge: 'Prosumer Zero-Turn', name: 'Kubota Z412', config: '48" deck. Gas. A step up from the Z200 line, for larger residential or light commercial use.', photoNote: 'Photo pending: Kubota Z412, 48" gas zero-turn' },
+  { group: 'Mowers', series: 'Z400 Series', badge: 'Prosumer Zero-Turn', name: 'Kubota Z422X', config: '54" deck. Gas. Prosumer zero-turn for larger properties.', photoNote: 'Photo pending: Kubota Z422X, 54" gas zero-turn' },
+  { group: 'Mowers', series: 'Z400 Series', badge: 'Prosumer Zero-Turn', name: 'Kubota Z452 (EFI)', config: '54" deck. Fuel-injected gas engine.', photoNote: 'Photo pending: Kubota Z452 EFI, 54" gas zero-turn' },
+  { group: 'Mowers', series: 'Z400 Series', badge: 'Prosumer Zero-Turn', name: 'Kubota Z452 (Turbo EFI)', config: '60" deck. Turbocharged fuel-injected gas engine.', photoNote: 'Photo pending: Kubota Z452 Turbo EFI, 60" gas zero-turn' },
+  { group: 'Mowers', series: 'Z700 Series', badge: 'Commercial Zero-Turn', name: 'Kubota Z724X', config: '54" deck. Gas. Commercial-duty line for landscaping crews and daily, high-hour use.', photoNote: 'Photo pending: Kubota Z724X, 54" commercial gas zero-turn' },
+  { group: 'Mowers', series: 'Z700 Series', badge: 'Commercial Zero-Turn', name: 'Kubota Z726X', config: '60" deck. Gas. Commercial-duty zero-turn for daily crew use.', photoNote: 'Photo pending: Kubota Z726X, 60" commercial gas zero-turn' },
+  { group: 'Mowers', series: 'ZG Series', badge: 'Commercial Zero-Turn (Grand)', name: 'Kubota ZG227', config: '60" deck. Gas. Zero-Turn Grand line, top of the commercial gas mower range.', photoNote: 'Photo pending: Kubota ZG227, 60" Grand zero-turn' },
+  { group: 'Mowers', series: 'SZ Series', badge: 'Stand-On Mower', name: 'Kubota SZ26', config: '61" deck. Stand-on platform for crews who want a smaller footprint and faster on/off transitions.', photoNote: 'Photo pending: Kubota SZ26, 61" stand-on mower' },
+
+  // UTILITY VEHICLES (1)
+  { group: 'Utility Vehicles', series: 'RTV-X Series', badge: 'Utility Vehicle', name: 'Kubota RTV-X (Cab)', config: 'Diesel. Enclosed cab. Job-site and property transport, hauling, and towing. Exact trim to confirm.', photoNote: 'Photo pending: Kubota RTV-X, cab utility vehicle' },
+
+  // ATTACHMENTS (5)
+  { group: 'Attachments', series: 'LA Series', badge: 'Front Loader', name: 'Kubota LA344S Loader', config: 'Front loader for lifting, loading, and material handling. Compatible tractor series to confirm.', photoNote: 'Photo pending: Kubota LA344S front loader' },
+  { group: 'Attachments', series: 'LA Series', badge: 'Front Loader', name: 'Kubota LA526 Loader', config: 'Front loader sized to match a specific Kubota tractor series. Compatibility to confirm.', photoNote: 'Photo pending: Kubota LA526 front loader' },
+  { group: 'Attachments', series: 'LA Series', badge: 'Front Loader', name: 'Kubota LA535 Loader', config: 'Front loader sized to match a specific Kubota tractor series. Compatibility to confirm.', photoNote: 'Photo pending: Kubota LA535 front loader' },
+  { group: 'Attachments', series: 'LA Series', badge: 'Front Loader', name: 'Kubota LA1065A Loader', config: 'Front loader sized to match a specific Kubota tractor series. Compatibility to confirm.', photoNote: 'Photo pending: Kubota LA1065A front loader' },
+  { group: 'Attachments', series: 'BH Series', badge: 'Backhoe', name: 'Kubota BH77 Backhoe', config: 'Backhoe attachment. Compatible tractor series to confirm.', photoNote: 'Photo pending: Kubota BH77 backhoe attachment' },
+];
+
+const GROUPS = ['Tractors', 'Mowers', 'Utility Vehicles', 'Attachments'];
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { group: 'All', series: 'All', q: '', advisorOpen: false };
+  }
+
+  _filtered() {
+    const q = this.state.q.trim().toLowerCase();
+    return UNITS.filter(u => {
+      if (this.state.group !== 'All' && u.group !== this.state.group) return false;
+      if (this.state.series !== 'All' && u.series !== this.state.series) return false;
+      if (q && (u.name + ' ' + u.series + ' ' + u.badge + ' ' + u.config).toLowerCase().indexOf(q) === -1) return false;
+      return true;
+    });
+  }
+
+  renderVals() {
+    const st = this.state;
+    const list = this._filtered();
+
+    const pillBase = {
+      display: 'inline-flex', alignItems: 'center', gap: '9px',
+      padding: '10px 16px', borderRadius: '999px', fontSize: '13.5px', fontWeight: 500,
+      border: '1px solid var(--line)', transition: 'background 200ms ease, color 200ms ease, border-color 200ms ease',
+    };
+    const mkPill = (label, value, count) => {
+      const active = st.group === value;
+      return {
+        label: label,
+        count: count,
+        active: active,
+        onClick: () => this.setState({ group: value, series: 'All' }),
+        style: Object.assign({}, pillBase, active
+          ? { background: 'var(--ink)', color: 'white', borderColor: 'var(--ink)' }
+          : { background: 'var(--surface)', color: 'var(--ink)' }),
+        countStyle: {
+          fontSize: '11px', letterSpacing: '0.02em',
+          color: active ? 'rgba(255,255,255,0.7)' : 'var(--muted-2)',
+        },
+      };
+    };
+    const pills = [mkPill('All', 'All', UNITS.length)].concat(
+      GROUPS.map(g => mkPill(g, g, UNITS.filter(u => u.group === g).length))
+    );
+
+    const scope = st.group === 'All' ? UNITS : UNITS.filter(u => u.group === st.group);
+    const seriesOptions = ['All'].concat(scope.map(u => u.series).filter((s, i, a) => a.indexOf(s) === i));
+
+    return {
+      units: list.map(u => Object.assign({}, u, { alt: u.photoNote })),
+      isEmpty: list.length === 0,
+      resultLabel: list.length === UNITS.length
+        ? UNITS.length + ' units in stock'
+        : 'Showing ' + list.length + ' of ' + UNITS.length + ' units',
+      pills: pills,
+      seriesOptions: seriesOptions,
+      series: st.series,
+      onSeriesChange: (e) => this.setState({ series: e.target.value }),
+      onQueryInput: (e) => this.setState({ q: e.target.value }),
+      resetFilters: () => this.setState({ group: 'All', series: 'All', q: '' }),
+
+      openAdvisor: () => this.setState({ advisorOpen: true }),
+      closeAdvisor: () => this.setState({ advisorOpen: false }),
+      toggleAdvisor: () => this.setState({ advisorOpen: !st.advisorOpen }),
+      dockStyle: {
+        position: 'fixed', right: '28px', bottom: '28px', zIndex: 120,
+        display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '12px',
+      },
+      dockPanelStyle: {
+        width: '340px', background: 'var(--surface)', border: '1px solid var(--line)',
+        borderRadius: '12px', overflow: 'hidden',
+        boxShadow: '0 26px 60px -30px rgba(8,34,56,0.55)',
+        opacity: st.advisorOpen ? 1 : 0,
+        transform: st.advisorOpen ? 'translateY(0) scale(1)' : 'translateY(12px) scale(0.98)',
+        pointerEvents: st.advisorOpen ? 'auto' : 'none',
+        transition: 'opacity 220ms ease, transform 260ms cubic-bezier(0.22,1,0.36,1)',
+      },
+
+      inkHoverStyle: { background: 'var(--ink-2)', color: 'white' },
+      ghostHoverStyle: { background: 'var(--ink)', color: 'white', borderColor: 'var(--ink)' },
+      orangeHoverStyle: { background: 'var(--orange-deep)' },
+      whiteGhostHoverStyle: { background: 'rgba(255,255,255,0.08)' },
+      footerLinkHoverStyle: { color: 'white' },
+    };
+  }
+}
+</script>
+</body>
+</html>

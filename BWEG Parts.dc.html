@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<script src="./bweg-advisor.js"></script>
+<style>
+:root {
+  --ink: #274373;
+  --ink-2: #33538A;
+  --ink-3: #4260A0;
+  --paper: #F3FAFF;
+  --paper-2: #E4EFF9;
+  --surface: #FFFFFF;
+  --line: #C8D7E3;
+  --muted: #56697A;
+  --muted-2: #8A9CAD;
+  --water-deep: #1B2F52;
+  --orange: #E85D04;
+  --orange-deep: #C64C00;
+  --success: #2A6B4A;
+  --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); font-family: var(--font-sans); font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-sans); font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; margin: 0; text-wrap: balance; color: var(--ink); }
+p { margin: 0; text-wrap: pretty; color: var(--ink); }
+a { color: inherit; text-decoration: none; transition: color 160ms ease, opacity 160ms ease; }
+a:hover { color: var(--orange); }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+input, select, textarea { font-family: inherit; }
+img { display: block; max-width: 100%; }
+::selection { background: var(--ink); color: var(--paper); }
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 1px; }
+@keyframes bwPulseRing { 0% { transform: scale(1); opacity: 0.55; } 100% { transform: scale(2.6); opacity: 0; } }
+@keyframes bwRise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.bw-unit { animation: bwRise 560ms cubic-bezier(0.22,1,0.36,1) both; transition: border-color 220ms ease, transform 220ms cubic-bezier(0.22,1,0.36,1), box-shadow 220ms ease; }
+.bw-unit:nth-child(3n+2) { animation-delay: 55ms; }
+.bw-unit:nth-child(3n+3) { animation-delay: 110ms; }
+.bw-unit:hover { border-color: var(--ink); box-shadow: 0 16px 34px -26px rgba(39,67,115,0.5); }
+.bw-lift { transition: transform 220ms cubic-bezier(0.22,1,0.36,1), background 200ms ease, color 200ms ease, border-color 200ms ease; }
+.bw-lift:hover { transform: translateY(-2px); }
+.bw-lift:active { transform: translateY(0) scale(0.99); }
+.bw-grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.bw-grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.bw-band { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: end; }
+.bw-formgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 24px; }
+.bw-formwrap { display: grid; grid-template-columns: 1fr 1.35fr; gap: 72px; align-items: start; }
+.bw-foot-news { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
+.bw-foot-contact { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
+.bw-field { display: flex; flex-direction: column; gap: 8px; }
+.bw-input { width: 100%; padding: 14px 15px; background: var(--surface); border: 1px solid var(--line); border-radius: 2px; font-size: 15px; color: var(--ink); outline: none; transition: border-color 180ms ease, box-shadow 180ms ease; }
+.bw-input:focus { border-color: var(--ink); box-shadow: 0 0 0 3px rgba(39,67,115,0.1); }
+@media (max-width: 1100px) {
+  .bw-grid4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 1000px) {
+  .bw-grid3 { grid-template-columns: 1fr; }
+  .bw-formwrap { grid-template-columns: 1fr; gap: 36px; }
+  .bw-foot-news, .bw-foot-contact { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 720px) {
+  .bw-grid4 { grid-template-columns: 1fr; }
+  .bw-band { grid-template-columns: 1fr; gap: 32px; }
+  .bw-formgrid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bw-unit { animation: none; }
+  .bw-lift, .bw-lift:hover, .bw-lift:active { transform: none; transition: none; }
+}
+.bw-mono { font-family: var(--font-mono); font-feature-settings: "ss01", "cv11"; }
+.bw-num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+</style>
+</helmet>
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+    <rect width="400" height="400" fill="#274373"></rect>
+    <g transform="translate(200 200)" fill="#F3FAFF" text-anchor="middle" font-family="'Geist',system-ui,sans-serif">
+      <text y="0" font-size="54" font-weight="700" letter-spacing="-2">PARTS</text>
+      <text y="42" font-size="16" font-weight="500" letter-spacing="4" opacity="0.72">GENUINE KUBOTA</text>
+    </g>
+    <rect x="40" y="40" width="320" height="320" fill="none" stroke="#F3FAFF" stroke-opacity="0.2" stroke-width="1"></rect>
+  </svg>
+</template>
+
+<div style="background: var(--paper); color: var(--ink); overflow-x: clip;">
+
+<!-- ===================== HEADER ===================== -->
+<header style="position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(11,14,18,0.94); backdrop-filter: blur(14px) saturate(140%); border-bottom: 1px solid rgba(255,255,255,0.06); color: white;">
+  <div style="max-width: 1440px; margin: 0 auto; padding: 0 40px; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: nowrap;">
+    <a href="BWEG%20Homepage%20v4.dc.html" style="display: flex; align-items: center; flex-shrink: 0;" aria-label="Blue Water Equipment Group — home">
+      <img src="./logo-bw-white.png" alt="Blue Water Equipment Group" style="height: 34px; width: auto; display: block;">
+    </a>
+    <nav aria-label="Primary" style="display: flex; align-items: center; gap: 22px; font-size: 13px; font-weight: 500; letter-spacing: -0.005em; flex: 1 1 auto; min-width: 0; overflow-x: auto; white-space: nowrap; flex-wrap: nowrap; scrollbar-width: none;">
+      <div onMouseEnter="{{ onEquipEnter }}" onMouseLeave="{{ scheduleClose }}" style="display: flex; align-items: center; flex-shrink: 0;">
+        <button type="button" onClick="{{ onEquipEnter }}" aria-expanded="{{ equipOpen }}" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.92);">
+          Equipment
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 9l6 6 6-6"></path></svg>
+        </button>
+      </div>
+      <a href="BWEG%20Financing.dc.html" style="flex-shrink: 0;">Apply For Financing</a>
+      <a href="BWEG%20Rentals.dc.html" style="flex-shrink: 0;">Rentals</a>
+      <a href="BWEG%20Service.dc.html" style="flex-shrink: 0;">Service</a>
+      <div onMouseEnter="{{ onPartsEnter }}" onMouseLeave="{{ scheduleClose }}" style="display: flex; align-items: center; flex-shrink: 0;">
+        <button type="button" onClick="{{ onPartsEnter }}" aria-expanded="{{ partsOpen }}" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; color: white; border-bottom: 2px solid var(--orange); padding-bottom: 3px;">
+          Parts
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 9l6 6 6-6"></path></svg>
+        </button>
+      </div>
+      <div onMouseEnter="{{ onCompanyEnter }}" onMouseLeave="{{ scheduleClose }}" style="display: flex; align-items: center; flex-shrink: 0;">
+        <button type="button" onClick="{{ onCompanyEnter }}" aria-expanded="{{ companyOpen }}" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.92);">
+          Company
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 9l6 6 6-6"></path></svg>
+        </button>
+      </div>
+      <a href="BWEG%20Homepage%20v4.dc.html#contact" style="flex-shrink: 0;">Contact</a>
+    </nav>
+
+    <div onMouseEnter="{{ cancelClose }}" onMouseLeave="{{ scheduleClose }}" style="{{ equipMenuStyle }}">
+      <a href="BWEG%20Equipment.dc.html?category=Tractors" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Tractors</a>
+      <a href="BWEG%20Equipment.dc.html?category=Mowers" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Mowers</a>
+      <a href="BWEG%20Equipment.dc.html?category=Utility%20Vehicles" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Utility Vehicles</a>
+      <a href="BWEG%20Equipment.dc.html?category=Attachments" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Attachments</a>
+    </div>
+    <div onMouseEnter="{{ cancelClose }}" onMouseLeave="{{ scheduleClose }}" style="{{ partsMenuStyle }}">
+      <a href="BWEG%20Parts.dc.html" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Order Parts</a>
+      <a href="BWEG%20Parts.dc.html#request" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Parts Request</a>
+    </div>
+    <div onMouseEnter="{{ cancelClose }}" onMouseLeave="{{ scheduleClose }}" style="{{ companyMenuStyle }}">
+      <a href="BWEG%20Company.dc.html" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">About Us</a>
+      <a href="BWEG%20Homepage%20v4.dc.html#locations" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Locations</a>
+      <a href="BWEG%20Company.dc.html#careers" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Careers</a>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 14px; flex-shrink: 0;">
+      <button type="button" onClick="{{ toggleAdvisor }}" aria-label="Ask our AI Advisor" style="display: inline-flex; align-items: center; gap: 8px; padding: 9px 13px; border: 1px solid rgba(255,255,255,0.24); border-radius: 999px; font-size: 12.5px; font-weight: 500; color: white;" style-hover="{{ whiteGhostHoverStyle }}">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        Ask AI
+      </button>
+      <a href="tel:+18435550142" class="bw-mono" style="font-size: 12.5px; letter-spacing: 0.02em; font-weight: 500;">(843)&nbsp;555-0142</a>
+      <a href="BWEG%20Equipment.dc.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--orange); color: white; font-size: 12.5px; font-weight: 600; border-radius: 2px; white-space: nowrap;" style-hover="{{ orangeHoverStyle }}">
+        Search Inventory
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!--PAGE-BODY-START-->
+<!-- ===================== PAGE HEADER BAND (DRAFT copy) ===================== -->
+<section style="background: var(--ink); color: white; padding: 148px 40px 72px;">
+  <div style="max-width: 1440px; margin: 0 auto;">
+    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 40px; flex-wrap: wrap;">
+      <nav aria-label="Breadcrumb" class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.5);">
+        <a href="BWEG%20Homepage%20v4.dc.html" style="color: rgba(255,255,255,0.5);">Home</a>
+        <span style="padding: 0 8px;">/</span>
+        <span style="color: white;">Parts</span>
+      </nav>
+      <span class="bw-mono" style="font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); border: 1px solid rgba(232,93,4,0.6); padding: 3px 7px;">Draft copy</span>
+    </div>
+    <div class="bw-band">
+      <h1 style="color: white; font-size: clamp(44px, 6vw, 84px); line-height: 0.96; letter-spacing: -0.04em; font-weight: 500; max-width: 14ch;">Genuine Kubota Parts</h1>
+      <div style="padding-bottom: 10px;">
+        <p style="color: rgba(255,255,255,0.74); font-size: 17px; line-height: 1.55; max-width: 46ch; margin-bottom: 24px;">Find the part for your machine, or tell us what you need and we'll track it down. [Live parts catalog pending.]</p>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="position: relative; display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px;">
+            <span style="position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--success); animation: bwPulseRing 1.8s ease-out infinite;"></span>
+            <span style="position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--success);"></span>
+          </span>
+          <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.7);">Parts requests answered by our parts team</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PLACEHOLDER CATEGORIES ===================== -->
+<section id="catalog" style="background: var(--paper); padding: 88px 40px;">
+  <div style="max-width: 1440px; margin: 0 auto;">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 40px;">
+      <div>
+        <div class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange); margin-bottom: 16px;">By Equipment Group</div>
+        <h2 style="font-size: clamp(28px, 3.2vw, 42px); font-weight: 500; letter-spacing: -0.035em; max-width: 26ch;">Parts for what we sell</h2>
+      </div>
+      <span class="bw-mono" style="font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);">Catalog pending · request form below is live</span>
+    </div>
+    <div class="bw-grid4">
+      <article class="bw-unit" style="background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 26px; display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
+          <span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--paper-2); color: var(--ink);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="7" cy="17" r="4"></circle><circle cx="18" cy="18" r="3"></circle><path d="M4 13V7h6l3 5"></path></svg></span>
+          <span class="bw-mono" style="font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange); border: 1px solid rgba(232,93,4,0.5); padding: 4px 7px; white-space: nowrap;">Catalog coming soon</span>
+        </div>
+        <h3 style="font-size: 19px; font-weight: 500; letter-spacing: -0.025em;">Tractor Parts</h3>
+        <p style="font-size: 14.5px; line-height: 1.55; color: var(--muted);">Filters, hydraulics, belts, and wear parts for BX, B, L, LX, and MX series machines.</p>
+        <button type="button" onClick="{{ pickTractors }}" class="bw-mono" style="margin-top: auto; align-self: flex-start; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); font-weight: 500;" style-hover="{{ orangeTextHoverStyle }}">Browse Tractor Parts →</button>
+      </article>
+      <article class="bw-unit" style="background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 26px; display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
+          <span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--paper-2); color: var(--ink);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="14" r="5"></circle><path d="M4 8h6"></path><path d="M14 8h6"></path></svg></span>
+          <span class="bw-mono" style="font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange); border: 1px solid rgba(232,93,4,0.5); padding: 4px 7px; white-space: nowrap;">Catalog coming soon</span>
+        </div>
+        <h3 style="font-size: 19px; font-weight: 500; letter-spacing: -0.025em;">Mower Parts</h3>
+        <p style="font-size: 14.5px; line-height: 1.55; color: var(--muted);">Blades, spindles, deck belts, and service parts for ZD, Z-series, ZG, and SZ mowers.</p>
+        <button type="button" onClick="{{ pickMowers }}" class="bw-mono" style="margin-top: auto; align-self: flex-start; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); font-weight: 500;" style-hover="{{ orangeTextHoverStyle }}">Browse Mower Parts →</button>
+      </article>
+      <article class="bw-unit" style="background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 26px; display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
+          <span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--paper-2); color: var(--ink);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 16h18"></path><circle cx="7" cy="18" r="2.5"></circle><circle cx="17" cy="18" r="2.5"></circle><path d="M5 16V9h8l3 4h3"></path></svg></span>
+          <span class="bw-mono" style="font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange); border: 1px solid rgba(232,93,4,0.5); padding: 4px 7px; white-space: nowrap;">Catalog coming soon</span>
+        </div>
+        <h3 style="font-size: 19px; font-weight: 500; letter-spacing: -0.025em;">Utility Vehicle Parts</h3>
+        <p style="font-size: 14.5px; line-height: 1.55; color: var(--muted);">Drivetrain, cab, and maintenance parts for the RTV-X series.</p>
+        <button type="button" onClick="{{ pickUtilityVehicles }}" class="bw-mono" style="margin-top: auto; align-self: flex-start; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); font-weight: 500;" style-hover="{{ orangeTextHoverStyle }}">Browse Utility Vehicle Parts →</button>
+      </article>
+      <article class="bw-unit" style="background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 26px; display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
+          <span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--paper-2); color: var(--ink);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 5l6 6"></path><path d="M9 14l-4 5h14l-4-8"></path></svg></span>
+          <span class="bw-mono" style="font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange); border: 1px solid rgba(232,93,4,0.5); padding: 4px 7px; white-space: nowrap;">Catalog coming soon</span>
+        </div>
+        <h3 style="font-size: 19px; font-weight: 500; letter-spacing: -0.025em;">Attachment Parts</h3>
+        <p style="font-size: 14.5px; line-height: 1.55; color: var(--muted);">Pins, bushings, cutting edges, and hydraulics for LA loaders and BH backhoes.</p>
+        <button type="button" onClick="{{ pickAttachments }}" class="bw-mono" style="margin-top: auto; align-self: flex-start; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); font-weight: 500;" style-hover="{{ orangeTextHoverStyle }}">Browse Attachment Parts →</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ORDER PARTS FORM ===================== -->
+<section id="request" style="background: var(--surface); border-top: 1px solid var(--line); padding: 88px 40px 104px;">
+  <div style="max-width: 1440px; margin: 0 auto;">
+    <div class="bw-formwrap">
+      <div>
+        <div class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange); margin-bottom: 18px;">Order Parts</div>
+        <h2 style="font-size: clamp(30px, 3.4vw, 46px); font-weight: 500; letter-spacing: -0.035em; margin-bottom: 20px; max-width: 20ch;">Tell us the machine and the part.</h2>
+        <p style="font-size: 16.5px; line-height: 1.6; color: var(--muted); max-width: 42ch; margin-bottom: 28px;">Our parts team confirms availability and price before anything ships.</p>
+        <div style="display: flex; flex-direction: column; gap: 12px; padding: 20px; background: var(--paper); border: 1px solid var(--line); border-radius: 8px;">
+          <div class="bw-mono" style="font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);">Don't know the exact part?</div>
+          <div style="font-size: 15px; line-height: 1.55; color: var(--ink);">Use the form, call us, or ask our AI Advisor, we'll help you find it. [Part numbers, prices, and stock counts pending the live catalog.]</div>
+          <a href="tel:+18435550142" class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); font-weight: 500;" style-hover="{{ orangeTextHoverStyle }}">Or call (843) 555-0142 →</a>
+        </div>
+      </div>
+
+      <div style="border: 1px solid var(--line); border-radius: 10px; padding: 32px; background: var(--paper);">
+        <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+          <div role="status" style="display: flex; flex-direction: column; gap: 18px; align-items: flex-start; padding: 40px 8px;">
+            <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: var(--success); color: white;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"><path d="M4 12.5l5.5 5.5L20 7"></path></svg>
+            </span>
+            <h3 style="font-size: 26px; font-weight: 500; letter-spacing: -0.03em;">Thanks, our parts team will follow up to confirm availability and price.</h3>
+            <p style="font-size: 15.5px; line-height: 1.6; color: var(--muted); max-width: 44ch;">{{ confirmDetail }}</p>
+            <button type="button" onClick="{{ resetForm }}" class="bw-lift" style="padding: 13px 18px; border: 1px solid var(--line); font-size: 13.5px; font-weight: 500; color: var(--ink); border-radius: 2px; background: var(--surface);" style-hover="{{ ghostHoverStyle }}">Send Another Request</button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ onSubmit }}" noValidate="{{ true }}" style="display: flex; flex-direction: column; gap: 22px;">
+            <div class="bw-formgrid">
+              <div class="bw-field">
+                <label for="pt-name" style="font-size: 13.5px; font-weight: 500; color: var(--ink);">Name <span style="color: var(--muted);">(required)</span></label>
+                <input id="pt-name" class="bw-input" type="text" value="{{ fName }}" onInput="{{ setName }}" autoComplete="name" aria-required="true">
+              </div>
+              <div class="bw-field">
+                <label for="pt-phone" style="font-size: 13.5px; font-weight: 500; color: var(--ink);">Phone <span style="color: var(--muted);">(required)</span></label>
+                <input id="pt-phone" class="bw-input" type="tel" value="{{ fPhone }}" onInput="{{ setPhone }}" autoComplete="tel" aria-required="true">
+              </div>
+              <div class="bw-field">
+                <label for="pt-email" style="font-size: 13.5px; font-weight: 500; color: var(--ink);">Email <span style="color: var(--muted);">(required)</span></label>
+                <input id="pt-email" class="bw-input" type="email" value="{{ fEmail }}" onInput="{{ setEmail }}" autoComplete="email" aria-required="true">
+              </div>
+              <div class="bw-field">
+                <label for="pt-group" style="font-size: 13.5px; font-weight: 500; color: var(--ink);">Equipment group <span style="color: var(--muted);">(required)</span></label>
+                <select id="pt-group" class="bw-input" value="{{ fGroup }}" onChange="{{ setGroup }}" aria-required="true" style="cursor: pointer;">
+                  <option value="">Select a group</option>
+                  <sc-for list="{{ groupOptions }}" as="opt" hint-placeholder-count="4">
+                    <option value="{{ opt }}">{{ opt }}</option>
+                  </sc-for>
+                </select>
+              </div>
+              <div class="bw-field">
+                <label for="pt-model" style="font-size: 13.5px; font-weight: 500; color: var(--ink);">Equipment model <span style="color: var(--muted);">(optional)</span></label>
+                <input id="pt-model" class="bw-input" type="text" list="pt-models" value="{{ fModel }}" onInput="{{ setModel }}" placeholder="e.g. Kubota ZD1211">
+                <datalist id="pt-models">
+                  <sc-for list="{{ modelSuggestions }}" as="m" hint-placeholder-count="0">
+                    <option value="{{ m }}"></option>
+                  </sc-for>
+                </datalist>
+              </div>
+              <div class="bw-field">
+                <label for="pt-part" style="font-size: 13.5px; font-weight: 500; color: var(--ink);">Part name or number <span style="color: var(--muted);">(optional)</span></label>
+                <input id="pt-part" class="bw-input" type="text" value="{{ fPart }}" onInput="{{ setPart }}" placeholder="If you know it">
+              </div>
+              <div class="bw-field">
+                <label for="pt-qty" style="font-size: 13.5px; font-weight: 500; color: var(--ink);">Quantity</label>
+                <input id="pt-qty" class="bw-input bw-num" type="number" min="1" step="1" value="{{ fQty }}" onChange="{{ setQty }}">
+              </div>
+              <div class="bw-field">
+                <label for="pt-loc" style="font-size: 13.5px; font-weight: 500; color: var(--ink);">Preferred location <span style="color: var(--muted);">(required)</span></label>
+                <select id="pt-loc" class="bw-input" value="{{ fLocation }}" onChange="{{ setLocation }}" aria-required="true" style="cursor: pointer;">
+                  <option value="">Select a location</option>
+                  <sc-for list="{{ locationOptions }}" as="opt" hint-placeholder-count="2">
+                    <option value="{{ opt }}">{{ opt }}</option>
+                  </sc-for>
+                </select>
+              </div>
+            </div>
+
+            <div class="bw-field">
+              <label for="pt-notes" style="font-size: 13.5px; font-weight: 500; color: var(--ink);">Notes <span style="color: var(--muted);">(optional)</span></label>
+              <textarea id="pt-notes" class="bw-input" rows="4" value="{{ fNotes }}" onInput="{{ setNotes }}" placeholder="Describe the part if you don't have the number" style="resize: vertical;"></textarea>
+            </div>
+
+            <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
+              <p role="alert" style="display: flex; align-items: flex-start; gap: 10px; padding: 13px 15px; border: 1px solid var(--orange); background: rgba(232,93,4,0.07); border-radius: 2px; font-size: 14px; line-height: 1.5; color: var(--orange-deep);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="flex-shrink: 0; margin-top: 2px;"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5"></path><path d="M12 16.5h.01"></path></svg>
+                {{ errorMsg }}
+              </p>
+            </sc-if>
+
+            <button type="submit" class="bw-lift" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 17px 24px; background: var(--orange); color: white; font-weight: 600; font-size: 15.5px; border-radius: 2px;" style-hover="{{ orangeHoverStyle }}">
+              Send Parts Request
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+            </button>
+          </form>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== REASSURANCE ===================== -->
+<section style="background: var(--water-deep); color: white; padding: 88px 40px;">
+  <div style="max-width: 1440px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
+    <p style="color: white; font-size: clamp(22px, 2.6vw, 34px); line-height: 1.25; letter-spacing: -0.03em; max-width: 30ch;">Don't know the exact part? Use the form above, call us, or ask our AI Advisor, we'll help you find it.</p>
+    <button type="button" onClick="{{ toggleAdvisor }}" style="display: inline-flex; align-items: center; gap: 12px; padding: 18px 24px; background: var(--orange); color: white; font-weight: 600; font-size: 15px; border-radius: 2px;" style-hover="{{ orangeHoverStyle }}">
+      Ask Our AI Advisor
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+    </button>
+  </div>
+</section>
+<!--PAGE-BODY-END-->
+
+<!-- ===================== FOOTER ===================== -->
+<footer style="background: var(--ink); color: rgba(255,255,255,0.62); padding: 0 40px 32px;">
+  <div style="max-width: 1440px; margin: 0 auto;">
+
+    <div class="bw-foot-news" style="padding: 64px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <div>
+        <div class="bw-mono" style="font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 14px;">Draft copy</div>
+        <h2 style="color: white; font-size: clamp(26px, 2.6vw, 34px); font-weight: 500; letter-spacing: -0.03em; max-width: 22ch;">Stay Connected With Blue Water Equipment Group</h2>
+      </div>
+      <form onSubmit="{{ onNewsletterSubmit }}" style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <input type="email" required="" placeholder="you@company.com" aria-label="Email address" style="flex: 1 1 240px; padding: 15px 16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); color: white; font-size: 14.5px; border-radius: 2px; outline: none;">
+          <button type="submit" style="padding: 15px 24px; background: var(--orange); color: white; font-weight: 600; font-size: 14.5px; border-radius: 2px;" style-hover="{{ orangeHoverStyle }}">{{ newsletterLabel }}</button>
+        </div>
+        <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 13px; line-height: 1.45; color: rgba(255,255,255,0.66); cursor: pointer;">
+          <input type="checkbox" style="margin-top: 2px; width: 15px; height: 15px; accent-color: var(--orange); cursor: pointer;">
+          <span>Yes, send me email updates on new inventory, rental availability, and service specials.</span>
+        </label>
+        <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 13px; line-height: 1.45; color: rgba(255,255,255,0.66); cursor: pointer;">
+          <input type="checkbox" style="margin-top: 2px; width: 15px; height: 15px; accent-color: var(--orange); cursor: pointer;">
+          <span>Yes, send me SMS updates. Message and data rates may apply. Reply STOP to opt out.</span>
+        </label>
+      </form>
+    </div>
+
+    <div id="contact" class="bw-foot-contact" style="padding: 48px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <div>
+        <div style="margin-bottom: 18px;">
+          <img src="./logo-bw-white.png" alt="Blue Water Equipment Group" style="height: 36px; width: auto; display: block; opacity: 0.95;">
+        </div>
+        <p style="font-size: 13.5px; line-height: 1.55; max-width: 40ch; color: rgba(255,255,255,0.62); margin-bottom: 24px;">Kubota sales, rentals, parts, and service across [2] locations in [State].</p>
+        <a href="tel:+18435550142" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 20px; background: var(--orange); color: white; font-weight: 600; font-size: 13.5px; border-radius: 2px;" style-hover="{{ orangeHoverStyle }}">
+          Call Us
+          <span class="bw-mono" style="font-size: 12.5px; letter-spacing: 0.02em; font-weight: 500;">(843)&nbsp;555-0142</span>
+        </a>
+      </div>
+      <div>
+        <sc-if value="{{ contactSent }}" hint-placeholder-val="{{ false }}">
+          <div role="status" style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start; padding: 24px; border: 1px solid rgba(255,255,255,0.18); border-radius: 8px;">
+            <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange);">Message sent</span>
+            <p style="font-size: 15px; line-height: 1.55; color: white; max-width: 40ch;">Thanks, we'll get back to you shortly.</p>
+            <button type="button" onClick="{{ resetContact }}" class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.7);" style-hover="{{ whiteLinkHoverStyle }}">Send another →</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ showContact }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ onContactSubmit }}" noValidate="{{ true }}" style="display: flex; flex-direction: column; gap: 12px;">
+            <div class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.55);">Send us a message</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <label style="display: flex; flex-direction: column; gap: 6px;">
+                <span style="font-size: 12.5px; color: rgba(255,255,255,0.7);">Name <span style="color: rgba(255,255,255,0.5);">(required)</span></span>
+                <input type="text" value="{{ cName }}" onInput="{{ setCName }}" autoComplete="name" aria-required="true" style="padding: 13px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); color: white; font-size: 14px; border-radius: 2px; outline: none;">
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 6px;">
+                <span style="font-size: 12.5px; color: rgba(255,255,255,0.7);">Email <span style="color: rgba(255,255,255,0.5);">(required)</span></span>
+                <input type="email" value="{{ cEmail }}" onInput="{{ setCEmail }}" autoComplete="email" aria-required="true" style="padding: 13px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); color: white; font-size: 14px; border-radius: 2px; outline: none;">
+              </label>
+            </div>
+            <label style="display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 12.5px; color: rgba(255,255,255,0.7);">Message <span style="color: rgba(255,255,255,0.5);">(required)</span></span>
+              <textarea rows="3" value="{{ cMessage }}" onInput="{{ setCMessage }}" aria-required="true" style="padding: 13px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); color: white; font-size: 14px; border-radius: 2px; outline: none; resize: vertical;"></textarea>
+            </label>
+            <sc-if value="{{ contactError }}" hint-placeholder-val="{{ false }}">
+              <p role="alert" style="font-size: 13px; line-height: 1.5; color: var(--orange); padding: 10px 12px; border: 1px solid rgba(232,93,4,0.6); border-radius: 2px;">{{ contactErrorMsg }}</p>
+            </sc-if>
+            <button type="submit" style="align-self: flex-start; padding: 14px 22px; background: white; color: var(--ink); font-weight: 600; font-size: 14px; border-radius: 2px;" style-hover="{{ whiteBtnHoverStyle }}">Send</button>
+          </form>
+        </sc-if>
+      </div>
+    </div>
+
+    <div style="padding-top: 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+      <div style="display: flex; gap: 8px;">
+        <a href="#" aria-label="Facebook" style="width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.14); display: inline-flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.75);" style-hover="{{ socialHoverStyle }}">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+        </a>
+        <a href="#" aria-label="Instagram" style="width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.14); display: inline-flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.75);" style-hover="{{ socialHoverStyle }}">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.4a4 4 0 1 1-4.6-4.6 4 4 0 0 1 4.6 4.6z"></path><path d="M17.5 6.5h.01"></path></svg>
+        </a>
+        <a href="#" aria-label="YouTube" style="width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.14); display: inline-flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.75);" style-hover="{{ socialHoverStyle }}">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 6.4a3 3 0 0 0-2.1-2.1C18.6 4 12 4 12 4s-6.6 0-8.4.3A3 3 0 0 0 1.5 6.4 32 32 0 0 0 1 12a32 32 0 0 0 .5 5.6 3 3 0 0 0 2.1 2.1C5.4 20 12 20 12 20s6.6 0 8.4-.3a3 3 0 0 0 2.1-2.1c.3-1.8.5-3.7.5-5.6a32 32 0 0 0-.5-5.6zM10 15.5v-7l6 3.5z"></path></svg>
+        </a>
+      </div>
+      <div class="bw-mono" style="display: flex; align-items: center; gap: 24px; flex-wrap: wrap; font-size: 12px; color: rgba(255,255,255,0.42);">
+        <a href="#" style="color: rgba(255,255,255,0.42);" style-hover="{{ footerLinkHoverStyle }}">Privacy Policy</a>
+        <a href="#" style="color: rgba(255,255,255,0.42);" style-hover="{{ footerLinkHoverStyle }}">Terms &amp; Conditions</a>
+        <span style="letter-spacing: 0.06em;">Mon–Fri [hours]. Weekend hours vary by location.</span>
+        <span style="letter-spacing: 0.06em;">© 2026 Blue Water Equipment Group.</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== AI ADVISOR DOCK (functional) ===================== -->
+<div style="{{ dockStyle }}">
+  <div style="{{ dockPanelStyle }}" role="dialog" aria-label="AI Equipment Advisor">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; background: var(--ink); color: white;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--success);"></span>
+        <span style="font-size: 13.5px; font-weight: 500;">Equipment Advisor</span>
+      </div>
+      <button type="button" onClick="{{ closeAdvisor }}" aria-label="Close advisor" style="color: rgba(255,255,255,0.7); display: inline-flex;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg>
+      </button>
+    </div>
+    <div ref="{{ chatBodyRef }}" role="log" aria-live="polite" style="height: 300px; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 14px; background: var(--paper);">
+      <sc-for list="{{ chatMsgs }}" as="m" hint-placeholder-count="1">
+        <div style="{{ m.wrapStyle }}">
+          <p style="{{ m.bubbleStyle }}">{{ m.text }}</p>
+          <sc-for list="{{ m.links }}" as="lnk" hint-placeholder-count="0">
+            <a href="{{ lnk.href }}" class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); font-weight: 500; padding-top: 2px;" style-hover="{{ orangeTextHoverStyle }}">{{ lnk.label }}</a>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; padding: 0 16px 14px; background: var(--paper);">
+      <sc-for list="{{ chatChips }}" as="chip" hint-placeholder-count="4">
+        <button type="button" onClick="{{ chip.onClick }}" style="padding: 8px 12px; border: 1px solid var(--line); background: var(--surface); font-size: 12.5px; border-radius: 999px; color: var(--ink);" style-hover="{{ ghostHoverStyle }}">{{ chip.label }}</button>
+      </sc-for>
+    </div>
+    <form onSubmit="{{ onChatSubmit }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-top: 1px solid var(--line); background: var(--surface);">
+      <input type="text" value="{{ chatInput }}" onInput="{{ onChatInput }}" placeholder="Ask about a model, rentals, parts…" aria-label="Ask the equipment advisor" style="flex: 1; min-width: 0; border: none; background: transparent; font-size: 13.5px; color: var(--ink); outline: none;">
+      <button type="submit" aria-label="Send question" style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--orange); color: white; border-radius: 50%; flex-shrink: 0;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+      </button>
+    </form>
+    <p style="padding: 0 16px 14px; font-size: 11px; line-height: 1.45; color: var(--muted-2); background: var(--surface);">Answers come from BWEG's confirmed equipment list and store information.</p>
+  </div>
+  <button type="button" onClick="{{ toggleAdvisor }}" aria-label="Ask our AI Advisor" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 20px; background: var(--ink); color: white; border-radius: 999px; font-size: 14px; font-weight: 500; box-shadow: 0 14px 34px -18px rgba(8,34,56,0.8); align-self: flex-end;" style-hover="{{ inkHoverStyle }}">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    Ask Our AI Advisor
+  </button>
+</div>
+
+<!--
+MOBILE NOTES (beyond standard stacking):
+- Category tiles: 4 → 2 (≤1100px) → 1 (≤720px) columns; the "Catalog coming soon"
+  badge wraps under the icon on the narrowest tiles.
+- Form: the eight-field grid collapses to one column at ≤720px; the intro copy
+  column stacks above the form card at ≤1000px.
+- Advisor dock: the panel is 340px wide with a 300px scrollback; on short viewports
+  it should cap at ~60vh so the input stays reachable above the keyboard.
+- Header nav keeps the single 68px scrolling row; dropdown panels are position:fixed
+  off the measured trigger rect.
+-->
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+/*PAGE-LOGIC-START*/
+const GROUP_OPTIONS = ['Tractors', 'Mowers', 'Utility Vehicles', 'Attachments'];
+const LOCATION_OPTIONS = ['[Location 1, city pending]', '[Location 2, city pending]'];
+const MODEL_SUGGESTIONS = [
+  'Kubota BX2380', 'Kubota BX23S (TLB)', 'Kubota B2601', 'Kubota L2502', 'Kubota LX2620',
+  'Kubota MX6000', 'Kubota MX6000 (Cab)', 'Kubota ZD1011', 'Kubota ZD1211', 'Kubota ZD1211L',
+  'Kubota Z232', 'Kubota Z242', 'Kubota Z252', 'Kubota Z412', 'Kubota Z422X', 'Kubota Z452 (EFI)',
+  'Kubota Z452 (Turbo EFI)', 'Kubota Z724X', 'Kubota Z726X', 'Kubota ZG227', 'Kubota SZ26',
+  'Kubota RTV-X (Cab)', 'Kubota LA344S Loader', 'Kubota LA526 Loader', 'Kubota LA535 Loader',
+  'Kubota LA1065A Loader', 'Kubota BH77 Backhoe',
+];
+const EMPTY_FORM = { name: '', email: '', phone: '', group: '', model: '', part: '', qty: '1', location: '', notes: '' };
+/*PAGE-LOGIC-END*/
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      menu: null, advisorOpen: false, subscribed: false,
+      submitted: false, error: '', sent: null,
+      form: Object.assign({}, EMPTY_FORM),
+      contact: { name: '', email: '', message: '' },
+      contactSent: false, contactError: '',
+      chat: [], chatInput: '',
+    };
+    this.chatBodyRef = React.createRef();
+  }
+
+  componentDidMount() {
+    const eng = window.BWEGAdvisor;
+    this.setState({ chat: [{ role: 'bot', text: eng ? eng.greeting : 'Ask me about equipment, rentals, parts, service, or financing.', links: [] }] });
+  }
+
+  _set(key, value) {
+    const form = Object.assign({}, this.state.form);
+    form[key] = value;
+    this.setState({ form: form });
+  }
+
+  _submit(e) {
+    e.preventDefault();
+    const f = this.state.form;
+    const missing = [];
+    if (!f.name.trim()) missing.push('your name');
+    if (!f.email.trim()) missing.push('your email');
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email.trim())) missing.push('a valid email address');
+    if (!f.phone.trim()) missing.push('your phone number');
+    if (!f.group) missing.push('the equipment group');
+    if (!f.location) missing.push('a preferred location');
+    if (missing.length) {
+      this.setState({ error: 'Please add ' + (missing.length > 1 ? missing.slice(0, -1).join(', ') + ' and ' + missing[missing.length - 1] : missing[0]) + '.' });
+      return;
+    }
+    this.setState({ submitted: true, error: '', sent: { group: f.group, model: f.model, part: f.part, qty: f.qty || '1', location: f.location } });
+  }
+
+  _ask(text) {
+    const t = String(text || '').trim();
+    if (!t) return;
+    const eng = window.BWEGAdvisor;
+    const reply = eng ? eng.answer(t) : { text: 'One moment — the advisor is still loading.', links: [] };
+    this.setState({
+      chat: this.state.chat.concat([{ role: 'you', text: t, links: [] }, { role: 'bot', text: reply.text, links: reply.links || [] }]),
+      chatInput: '', advisorOpen: true,
+    }, () => {
+      const el = this.chatBodyRef.current;
+      if (el) el.scrollTop = el.scrollHeight;
+    });
+  }
+
+  _openMenuFrom(name, e) {
+    clearTimeout(this._menuTimer);
+    const host = e && e.currentTarget ? e.currentTarget.closest('div') : null;
+    const r = host ? host.getBoundingClientRect() : null;
+    const next = (e && e.type === 'click' && this.state.menu === name) ? null : name;
+    this.setState({ menu: next, menuX: r ? r.left : 0, menuY: r ? r.bottom + 12 : 68 });
+  }
+
+  _chatVals() {
+    const st = this.state;
+    const eng = window.BWEGAdvisor;
+    return {
+      chatBodyRef: this.chatBodyRef,
+      chatMsgs: st.chat.map(m => ({
+        text: m.text,
+        links: m.links || [],
+        wrapStyle: {
+          display: 'flex', flexDirection: 'column', gap: '6px',
+          alignItems: m.role === 'you' ? 'flex-end' : 'flex-start',
+        },
+        bubbleStyle: {
+          fontSize: '14px', lineHeight: 1.5, padding: '12px 14px', maxWidth: '86%',
+          background: m.role === 'you' ? 'var(--ink)' : 'var(--surface)',
+          color: m.role === 'you' ? 'white' : 'var(--ink)',
+          border: m.role === 'you' ? '1px solid var(--ink)' : '1px solid var(--line)',
+          borderRadius: m.role === 'you' ? '12px 12px 3px 12px' : '12px 12px 12px 3px',
+        },
+      })),
+      chatChips: ((eng && eng.suggestions) || []).map(s => ({ label: s, onClick: () => this._ask(s) })),
+      chatInput: st.chatInput,
+      onChatInput: (e) => this.setState({ chatInput: e.target.value }),
+      onChatSubmit: (e) => { e.preventDefault(); this._ask(st.chatInput); },
+      closeAdvisor: () => this.setState({ advisorOpen: false }),
+      toggleAdvisor: () => this.setState({ advisorOpen: !st.advisorOpen }),
+      dockStyle: {
+        position: 'fixed', right: '28px', bottom: '28px', zIndex: 120,
+        display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '12px',
+      },
+      dockPanelStyle: {
+        width: '360px', maxWidth: 'calc(100vw - 40px)', background: 'var(--surface)',
+        border: '1px solid var(--line)', borderRadius: '12px', overflow: 'hidden',
+        boxShadow: '0 26px 60px -30px rgba(8,34,56,0.55)',
+        opacity: st.advisorOpen ? 1 : 0,
+        transform: st.advisorOpen ? 'translateY(0) scale(1)' : 'translateY(12px) scale(0.98)',
+        pointerEvents: st.advisorOpen ? 'auto' : 'none',
+        transition: 'opacity 220ms ease, transform 260ms cubic-bezier(0.22,1,0.36,1)',
+      },
+    };
+  }
+
+  _shellVals() {
+    const st = this.state;
+    const menuPanel = (open) => ({
+      position: 'fixed', top: (st.menuY || 68) + 'px', left: Math.max(12, (st.menuX || 0) - 14) + 'px', minWidth: '190px',
+      background: 'rgba(11,14,18,0.97)', backdropFilter: 'blur(14px)',
+      border: '1px solid rgba(255,255,255,0.1)', padding: '6px 0', borderRadius: '4px',
+      boxShadow: '0 24px 50px -24px rgba(0,0,0,0.7)',
+      opacity: open ? 1 : 0,
+      transform: open ? 'translateY(0)' : 'translateY(-6px)',
+      pointerEvents: open ? 'auto' : 'none',
+      transition: 'opacity 180ms ease, transform 200ms cubic-bezier(0.22,1,0.36,1)',
+      zIndex: 10,
+    });
+    const c = st.contact;
+    return {
+      equipOpen: st.menu === 'equip',
+      partsOpen: st.menu === 'parts',
+      companyOpen: st.menu === 'company',
+      onEquipEnter: (e) => this._openMenuFrom('equip', e),
+      onPartsEnter: (e) => this._openMenuFrom('parts', e),
+      onCompanyEnter: (e) => this._openMenuFrom('company', e),
+      scheduleClose: () => { clearTimeout(this._menuTimer); this._menuTimer = setTimeout(() => this.setState({ menu: null }), 140); },
+      cancelClose: () => clearTimeout(this._menuTimer),
+      equipMenuStyle: menuPanel(st.menu === 'equip'),
+      partsMenuStyle: menuPanel(st.menu === 'parts'),
+      companyMenuStyle: menuPanel(st.menu === 'company'),
+
+      newsletterLabel: st.subscribed ? 'Signed Up' : 'Sign Up',
+      onNewsletterSubmit: (e) => { e.preventDefault(); this.setState({ subscribed: true }); },
+
+      cName: c.name, cEmail: c.email, cMessage: c.message,
+      setCName: (e) => this.setState({ contact: Object.assign({}, c, { name: e.target.value }) }),
+      setCEmail: (e) => this.setState({ contact: Object.assign({}, c, { email: e.target.value }) }),
+      setCMessage: (e) => this.setState({ contact: Object.assign({}, c, { message: e.target.value }) }),
+      contactSent: st.contactSent,
+      showContact: !st.contactSent,
+      contactError: !!st.contactError,
+      contactErrorMsg: st.contactError,
+      resetContact: () => this.setState({ contactSent: false, contactError: '', contact: { name: '', email: '', message: '' } }),
+      onContactSubmit: (e) => {
+        e.preventDefault();
+        const missing = [];
+        if (!c.name.trim()) missing.push('your name');
+        if (!c.email.trim()) missing.push('your email');
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(c.email.trim())) missing.push('a valid email address');
+        if (!c.message.trim()) missing.push('a message');
+        if (missing.length) { this.setState({ contactError: 'Please add ' + (missing.length > 1 ? missing.slice(0, -1).join(', ') + ' and ' + missing[missing.length - 1] : missing[0]) + '.' }); return; }
+        this.setState({ contactSent: true, contactError: '' });
+      },
+
+      inkHoverStyle: { background: 'var(--ink-2)', color: 'white' },
+      ghostHoverStyle: { background: 'var(--ink)', color: 'white', borderColor: 'var(--ink)' },
+      orangeHoverStyle: { background: 'var(--orange-deep)' },
+      orangeTextHoverStyle: { color: 'var(--orange)' },
+      whiteGhostHoverStyle: { background: 'rgba(255,255,255,0.08)' },
+      whiteLinkHoverStyle: { color: 'white' },
+      whiteBtnHoverStyle: { background: 'rgba(255,255,255,0.86)' },
+      footerLinkHoverStyle: { color: 'white' },
+      socialHoverStyle: { background: 'white', color: 'var(--ink)', borderColor: 'white' },
+      menuItemHoverStyle: { background: 'rgba(255,255,255,0.08)', color: 'white' },
+    };
+  }
+
+  renderVals() {
+    const st = this.state;
+    const f = st.form;
+    const sent = st.sent;
+    /*PAGE-VALS-START*/
+    const pickGroup = (g) => {
+      const form = Object.assign({}, this.state.form, { group: g });
+      this.setState({ form: form });
+      const el = document.getElementById('request');
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 84, behavior: 'smooth' });
+    };
+    const pageVals = {
+      submitted: st.submitted,
+      showForm: !st.submitted,
+      confirmDetail: sent
+        ? 'Logged: ' + sent.group + (sent.model ? ' · ' + sent.model : '') + (sent.part ? ' · ' + sent.part : '') + ' · qty ' + sent.qty + ' · ' + sent.location + '.'
+        : '',
+      resetForm: () => this.setState({ submitted: false, sent: null, error: '', form: Object.assign({}, EMPTY_FORM) }),
+      onSubmit: (e) => this._submit(e),
+      hasError: !!st.error,
+      errorMsg: st.error,
+      groupOptions: GROUP_OPTIONS,
+      locationOptions: LOCATION_OPTIONS,
+      modelSuggestions: MODEL_SUGGESTIONS,
+      fName: f.name, fEmail: f.email, fPhone: f.phone, fGroup: f.group,
+      fModel: f.model, fPart: f.part, fQty: f.qty, fLocation: f.location, fNotes: f.notes,
+      setName: (e) => this._set('name', e.target.value),
+      setEmail: (e) => this._set('email', e.target.value),
+      setPhone: (e) => this._set('phone', e.target.value),
+      setGroup: (e) => this._set('group', e.target.value),
+      setModel: (e) => this._set('model', e.target.value),
+      setPart: (e) => this._set('part', e.target.value),
+      setQty: (e) => this._set('qty', e.target.value),
+      setLocation: (e) => this._set('location', e.target.value),
+      setNotes: (e) => this._set('notes', e.target.value),
+      pickTractors: () => pickGroup('Tractors'),
+      pickMowers: () => pickGroup('Mowers'),
+      pickUtilityVehicles: () => pickGroup('Utility Vehicles'),
+      pickAttachments: () => pickGroup('Attachments'),
+    };
+/*PAGE-VALS-END*/
+    return Object.assign({}, this._shellVals(), this._chatVals(), pageVals);
+  }
+}
+</script>
+</body>
+</html>

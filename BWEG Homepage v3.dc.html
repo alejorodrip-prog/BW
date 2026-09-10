@@ -11,7 +11,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
-<script src="./bweg-advisor.js"></script>
 <style>
 :root {
   --ink: #274373;
@@ -63,8 +62,6 @@ img { display: block; max-width: 100%; }
 .bw-rent-tile { transition: background 240ms ease, border-color 240ms ease, transform 240ms cubic-bezier(0.22,1,0.36,1); }
 .bw-rent-tile:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.34); transform: translateY(-3px); }
 .bw-rent-tile:hover .bw-rent-link { color: var(--orange); }
-.bw-rent-tile:hover .bw-rent-photo { filter: brightness(0.7); }
-.bw-foot-contact { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
 .bw-rent5 { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
 .bw-locgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
 .bw-foot-news { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
@@ -72,7 +69,6 @@ img { display: block; max-width: 100%; }
   .bw-rent5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .bw-locgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .bw-foot-news { grid-template-columns: 1fr; gap: 32px; }
-  .bw-foot-contact { grid-template-columns: 1fr; gap: 36px; }
 }
 @media (max-width: 640px) {
   .bw-rent5 { grid-template-columns: 1fr; }
@@ -115,7 +111,7 @@ img { display: block; max-width: 100%; }
           <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 9l6 6 6-6"></path></svg>
         </button>
       </div>
-      <a href="BWEG%20Financing.dc.html" style="flex-shrink: 0;">Apply For Financing</a>
+      <a href="#finance" style="flex-shrink: 0;">Apply For Financing</a>
       <a href="BWEG%20Rentals.dc.html" style="flex-shrink: 0;">Rentals</a>
       <a href="BWEG%20Service.dc.html" style="flex-shrink: 0;">Service</a>
       <div onMouseEnter="{{ onPartsEnter }}" onMouseLeave="{{ scheduleClose }}" style="display: flex; align-items: center; flex-shrink: 0;">
@@ -141,13 +137,13 @@ img { display: block; max-width: 100%; }
       <a href="BWEG%20Equipment.dc.html" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Attachments</a>
     </div>
     <div onMouseEnter="{{ cancelClose }}" onMouseLeave="{{ scheduleClose }}" style="{{ partsMenuStyle }}">
-      <a href="BWEG%20Parts.dc.html" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Order Parts</a>
-      <a href="BWEG%20Parts.dc.html" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Parts Request</a>
+      <a href="#parts" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Order Parts</a>
+      <a href="#parts" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Parts Request</a>
     </div>
     <div onMouseEnter="{{ cancelClose }}" onMouseLeave="{{ scheduleClose }}" style="{{ companyMenuStyle }}">
-      <a href="BWEG%20Company.dc.html" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">About Us</a>
+      <a href="#company" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">About Us</a>
       <a href="#locations" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Locations</a>
-      <a href="BWEG%20Company.dc.html" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Careers</a>
+      <a href="#company" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Careers</a>
     </div>
     <div style="display: flex; align-items: center; gap: 14px; flex-shrink: 0;">
       <button type="button" onClick="{{ openAdvisor }}" aria-label="Ask our AI Advisor" style="display: inline-flex; align-items: center; gap: 8px; padding: 9px 13px; border: 1px solid rgba(255,255,255,0.24); border-radius: 999px; font-size: 12.5px; font-weight: 500; color: white;" style-hover="{{ heroSecondaryHoverStyle }}">
@@ -155,7 +151,7 @@ img { display: block; max-width: 100%; }
         Ask AI
       </button>
       <a href="tel:+18435550142" class="bw-mono" style="font-size: 12.5px; letter-spacing: 0.02em; font-weight: 500;">(843)&nbsp;555-0142</a>
-      <a href="BWEG%20Equipment.dc.html" style="{{ headerCtaStyle }}">
+      <a href="#inventory" style="{{ headerCtaStyle }}">
         Search Inventory
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
       </a>
@@ -186,7 +182,7 @@ img { display: block; max-width: 100%; }
       <div style="max-width: 1440px; margin: 0 auto; width: 100%; pointer-events: auto;">
         <div ref="{{ heroTag1Ref }}" style="display: inline-flex; align-items: center; gap: 10px; padding: 7px 13px 7px 11px; background: rgba(255,255,255,0.06); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.14); border-radius: 999px; color: rgba(255,255,255,0.88); font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; margin-bottom: 24px;" class="bw-hero-el {{ tagCls }}">
           <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 3px rgba(232,93,4,0.22);"></span>
-          Kubota Authorized &nbsp;·&nbsp; Sales &amp; Rentals &nbsp;·&nbsp; South Carolina
+          Kubota Authorized &nbsp;·&nbsp; Sales &amp; Rentals &nbsp;·&nbsp; SC · NC · GA
         </div>
 
         <h1 ref="{{ heroHeadRef }}" style="color: white; font-size: clamp(32px, 4.4vw, 64px); line-height: 1.0; letter-spacing: -0.04em; font-weight: 500; margin-bottom: 24px; max-width: 22ch;" class="bw-hero-el {{ headCls }}">
@@ -198,6 +194,15 @@ img { display: block; max-width: 100%; }
             Search live inventory across every Blue Water location, see every unit in 360°, and buy or rent in minutes without ever picking up the phone.
           </p>
 
+          <div ref="{{ heroCtasRef }}" class="bw-hero-el {{ ctasCls }}" style="display: flex; align-items: center; gap: 14px;">
+            <a href="#inventory" style="display: inline-flex; align-items: center; gap: 12px; padding: 16px 22px; background: var(--orange); color: white; font-weight: 600; font-size: 14.5px; letter-spacing: -0.005em; border-radius: 2px;" style-hover="{{ heroPrimaryHoverStyle }}">
+              Search Inventory
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+            </a>
+            <a href="BWEG%20Rentals.dc.html" style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 22px; background: transparent; color: white; border: 1px solid rgba(255,255,255,0.24); font-weight: 500; font-size: 14.5px; border-radius: 2px;" style-hover="{{ heroSecondaryHoverStyle }}">
+              Explore Rentals
+            </a>
+          </div>
         </div>
 
         <!-- Inline inventory search -->
@@ -208,7 +213,7 @@ img { display: block; max-width: 100%; }
           </div>
           <label style="display: flex; flex-direction: column; justify-content: center; gap: 2px; padding: 10px 18px; background: rgba(11,14,18,0.72); min-width: 210px; flex: 1 1 210px;">
             <span class="bw-mono" style="font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5);">Category</span>
-            <select value="{{ heroCat }}" onChange="{{ setHeroCat }}" style="{{ selectStyle }}">
+            <select style="{{ selectStyle }}">
               <option>All Equipment</option>
               <option>Tractors</option>
               <option>Mowers</option>
@@ -218,9 +223,15 @@ img { display: block; max-width: 100%; }
           </label>
           <label style="display: flex; flex-direction: column; justify-content: center; gap: 2px; padding: 10px 18px; background: rgba(11,14,18,0.72); min-width: 210px; flex: 1 1 210px;">
             <span class="bw-mono" style="font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5);">Location</span>
-            <select value="{{ heroLoc }}" onChange="{{ setHeroLoc }}" style="{{ selectStyle }}">
+            <select style="{{ selectStyle }}">
               <option>All Locations</option>
-              <option>Greer, SC</option>
+              <option>Charleston, SC</option>
+              <option>Columbia, SC</option>
+              <option>Greenville, SC</option>
+              <option>Charlotte, NC</option>
+              <option>Raleigh, NC</option>
+              <option>Atlanta, GA</option>
+              <option>Savannah, GA</option>
             </select>
           </label>
           <button type="submit" style="display: inline-flex; align-items: center; gap: 10px; padding: 18px 26px; background: var(--orange); color: white; font-weight: 600; font-size: 14px;" style-hover="{{ heroPrimaryHoverStyle }}">
@@ -240,8 +251,8 @@ img { display: block; max-width: 100%; }
       <div style="padding: 32px 28px; border-right: 1px solid var(--ink-3); display: flex; flex-direction: column; gap: 10px;">
         <span class="bw-tag-inv">§ Locations</span>
         <div style="display: flex; align-items: baseline; gap: 8px;">
-          <span class="bw-num" style="font-size: 40px; font-weight: 500; color: white; letter-spacing: -0.03em;">1</span>
-          <span style="font-size: 13px; color: rgba(255,255,255,0.55);">location in SC</span>
+          <span class="bw-num" style="font-size: 40px; font-weight: 500; color: white; letter-spacing: -0.03em;">14</span>
+          <span style="font-size: 13px; color: rgba(255,255,255,0.55);">across SC, NC &amp; GA</span>
         </div>
       </div>
       <div style="padding: 32px 28px; border-right: 1px solid var(--ink-3); display: flex; flex-direction: column; gap: 10px;">
@@ -312,8 +323,8 @@ img { display: block; max-width: 100%; }
         <canvas ref="{{ p1CanvasRef }}" role="img" aria-label="360° view — Kubota L-Series compact tractor" tabindex="0" style="position: absolute; inset: 0; width: 100%; height: 100%;"></canvas>
         <div ref="{{ p1FallbackRef }}" style="{{ p1FallbackStyle }}">
           <div style="text-align: center; padding: 40px; max-width: 420px;">
-            <div class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange); margin-bottom: 12px;">360° view loading…</div>
-            <p style="font-size: 13px; color: var(--muted); line-height: 1.55;">If this persists, frames are missing at <code style="font-family: var(--font-mono); font-size: 12px;">/assets/sequences/l2502/</code></p>
+            <div class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange); margin-bottom: 12px;">360° view coming soon</div>
+            <p style="font-size: 13px; color: var(--muted); line-height: 1.55;">Turntable pending production — 60 frames, <code style="font-family: var(--font-mono); font-size: 12px;">/assets/sequences/product-01/</code></p>
           </div>
         </div>
         <div ref="{{ p1LoaderRef }}" style="{{ p1LoaderStyle }}">
@@ -430,8 +441,8 @@ img { display: block; max-width: 100%; }
         <canvas ref="{{ p2CanvasRef }}" role="img" aria-label="360° view — Kubota ZD Series zero-turn mower" tabindex="0" style="position: absolute; inset: 0; width: 100%; height: 100%;"></canvas>
         <div ref="{{ p2FallbackRef }}" style="{{ p2FallbackStyle }}">
           <div style="text-align: center; padding: 40px; max-width: 420px;">
-            <div class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange); margin-bottom: 12px;">360° view loading…</div>
-            <p style="font-size: 13px; color: var(--muted); line-height: 1.55;">If this persists, frames are missing at <code style="font-family: var(--font-mono); font-size: 12px;">/assets/sequences/zd1211/</code></p>
+            <div class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange); margin-bottom: 12px;">360° view coming soon</div>
+            <p style="font-size: 13px; color: var(--muted); line-height: 1.55;">Turntable pending production — 60 frames, <code style="font-family: var(--font-mono); font-size: 12px;">/assets/sequences/product-02/</code></p>
           </div>
         </div>
         <div ref="{{ p2LoaderRef }}" style="{{ p2LoaderStyle }}">
@@ -457,8 +468,8 @@ img { display: block; max-width: 100%; }
     </div>
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
       <article class="bw-card bw-reveal" style="background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;">
-        <div style="position: relative; aspect-ratio: 4/3; background: #F3F3F1; overflow: hidden;">
-          <img src="./uploads/Equipment Catalog/Kubota RTV-X Series.jpeg" alt="Kubota RTV-X Series utility vehicle" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <div style="position: relative; aspect-ratio: 4/3; background: linear-gradient(180deg, #EFECE3 0%, #DDD9CC 100%); display: flex; align-items: center; justify-content: center;">
+          <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); padding: 6px 11px; background: rgba(255,255,255,0.92);">360° view coming soon</span>
         </div>
         <div style="padding: 22px;">
           <div class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px;">Utility Vehicles</div>
@@ -471,8 +482,8 @@ img { display: block; max-width: 100%; }
         </div>
       </article>
       <article class="bw-card bw-reveal" data-reveal-delay="50" style="background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;">
-        <div style="position: relative; aspect-ratio: 4/3; background: #F3F3F1; overflow: hidden;">
-          <img src="./uploads/Equipment Catalog/Kubota LA Series Loader.jpeg" alt="Kubota LA Series loader attachment on a compact tractor" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <div style="position: relative; aspect-ratio: 4/3; background: linear-gradient(180deg, #EFECE3 0%, #DDD9CC 100%); display: flex; align-items: center; justify-content: center;">
+          <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); padding: 6px 11px; background: rgba(255,255,255,0.92);">360° view coming soon</span>
         </div>
         <div style="padding: 22px;">
           <div class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px;">Attachments</div>
@@ -485,8 +496,8 @@ img { display: block; max-width: 100%; }
         </div>
       </article>
       <article class="bw-card bw-reveal" data-reveal-delay="100" style="background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;">
-        <div style="position: relative; aspect-ratio: 4/3; background: #F3F3F1; overflow: hidden;">
-          <img src="./uploads/Equipment Catalog/Kubota BX23S TLB.jpeg" alt="Kubota BX23S tractor-loader-backhoe" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <div style="position: relative; aspect-ratio: 4/3; background: linear-gradient(180deg, #EFECE3 0%, #DDD9CC 100%); display: flex; align-items: center; justify-content: center;">
+          <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); padding: 6px 11px; background: rgba(255,255,255,0.92);">360° view coming soon</span>
         </div>
         <div style="padding: 22px;">
           <div class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px;">Tractors · Sub-Compact</div>
@@ -513,13 +524,59 @@ img { display: block; max-width: 100%; }
   </div>
 </section>
 
-<!-- ===================== §02 RENTAL FLEET ===================== -->
+<!-- ===================== §02 SHOP BY CATEGORY ===================== -->
+<section id="categories" style="background: var(--paper-2); padding: 140px 40px; border-top: 1px solid var(--line);">
+  <div style="max-width: 1440px; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 88px; align-items: end;">
+      <div>
+        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 40px;">
+          <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink);">§02</span>
+          <span style="width: 48px; height: 1px; background: var(--ink);"></span>
+          <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted);">Shop by Category</span>
+        </div>
+        <h2 style="font-size: clamp(40px, 5.2vw, 72px); line-height: 0.98; letter-spacing: -0.035em; font-weight: 500; max-width: 16ch;">Find the Right Equipment for the Job</h2>
+      </div>
+      <div style="padding-bottom: 12px;">
+        <p style="color: var(--ink); font-size: 17px; line-height: 1.55; max-width: 44ch;">Four equipment lines, one dealer network. Whether you run five acres or fifty, we stock the right machine and the crew that knows it.</p>
+      </div>
+    </div>
+
+    <div style="border-top: 1px solid var(--ink);">
+      <a href="#inventory" class="bw-index-row bw-reveal" style="display: grid; grid-template-columns: 60px 1.1fr 1.3fr auto; gap: 32px; align-items: center; padding: 34px 0; border-bottom: 1px solid var(--line);">
+        <span class="bw-mono" style="font-size: 12px; letter-spacing: 0.14em; color: var(--muted);">01</span>
+        <h3 class="bw-index-title" style="font-size: clamp(28px, 3.4vw, 44px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.02;">Tractors</h3>
+        <span style="font-size: 14.5px; color: var(--muted); line-height: 1.45;">Sub-compact, compact, and utility — for property, hobby farms, and acreage work.</span>
+        <svg class="bw-index-arrow" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+      </a>
+      <a href="#inventory" class="bw-index-row bw-reveal" data-reveal-delay="40" style="display: grid; grid-template-columns: 60px 1.1fr 1.3fr auto; gap: 32px; align-items: center; padding: 34px 0; border-bottom: 1px solid var(--line);">
+        <span class="bw-mono" style="font-size: 12px; letter-spacing: 0.14em; color: var(--muted);">02</span>
+        <h3 class="bw-index-title" style="font-size: clamp(28px, 3.4vw, 44px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.02;">Mowers</h3>
+        <span style="font-size: 14.5px; color: var(--muted); line-height: 1.45;">Diesel and gas, residential to commercial zero-turns and stand-ons.</span>
+        <svg class="bw-index-arrow" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+      </a>
+      <a href="#inventory" class="bw-index-row bw-reveal" data-reveal-delay="80" style="display: grid; grid-template-columns: 60px 1.1fr 1.3fr auto; gap: 32px; align-items: center; padding: 34px 0; border-bottom: 1px solid var(--line);">
+        <span class="bw-mono" style="font-size: 12px; letter-spacing: 0.14em; color: var(--muted);">03</span>
+        <h3 class="bw-index-title" style="font-size: clamp(28px, 3.4vw, 44px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.02;">Utility Vehicles</h3>
+        <span style="font-size: 14.5px; color: var(--muted); line-height: 1.45;">Job-site and property transport.</span>
+        <svg class="bw-index-arrow" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+      </a>
+      <a href="#inventory" class="bw-index-row bw-reveal" data-reveal-delay="120" style="display: grid; grid-template-columns: 60px 1.1fr 1.3fr auto; gap: 32px; align-items: center; padding: 34px 0; border-bottom: 1px solid var(--ink);">
+        <span class="bw-mono" style="font-size: 12px; letter-spacing: 0.14em; color: var(--muted);">04</span>
+        <h3 class="bw-index-title" style="font-size: clamp(28px, 3.4vw, 44px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.02;">Attachments</h3>
+        <span style="font-size: 14.5px; color: var(--muted); line-height: 1.45;">Loaders, backhoes, and implements built to match the machine.</span>
+        <svg class="bw-index-arrow" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== §03 RENTAL FLEET ===================== -->
 <section id="rentals" style="background: var(--water-deep); color: white; padding: 140px 40px;">
   <div style="max-width: 1440px; margin: 0 auto;">
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 72px; align-items: end;">
       <div>
         <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 40px;">
-          <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange);">§02</span>
+          <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange);">§03</span>
           <span style="width: 48px; height: 1px; background: var(--orange);"></span>
           <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.6);">Rental Fleet</span>
         </div>
@@ -529,65 +586,53 @@ img { display: block; max-width: 100%; }
         <p style="color: rgba(255,255,255,0.74); font-size: 17px; line-height: 1.55; max-width: 46ch;">Not every job needs a purchase. Browse what's available to rent right now, from compact tractors to attachments, with the same live availability and transparent pricing as our inventory for sale.</p>
         <div style="display: flex; flex-direction: column; gap: 8px;">
           <div style="font-size: 15px; font-weight: 500; color: white;">Rent by the day, the week, or the month.</div>
-          <div class="bw-mono" style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55);">Our Greer, SC location services every rental</div>
+          <div class="bw-mono" style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55);">Our [Number] locations across SC · NC · GA service every rental</div>
         </div>
-        <div class="bw-mono" style="font-size: 10.5px; line-height: 1.7; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14);">Rentals page: filter by the four confirmed groups · one rental request form · specific fleet pending confirmation</div>
+        <div class="bw-mono" style="font-size: 10.5px; line-height: 1.7; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14);">Catalog: filter by category · sort by featured, most recent, or name · keyword search · Rental Request on every unit</div>
       </div>
     </div>
 
     <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 56px;">
-      <a href="BWEG%20Rentals.dc.html" class="bw-rent-tile bw-reveal" style="display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; background: rgba(255,255,255,0.03); overflow: hidden;">
-        <div class="bw-rent-photo" role="img" aria-label="Kubota tractor available to rent" style="position: relative; aspect-ratio: 4/3; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; padding: 14px; transition: filter 240ms ease; overflow: hidden;">
-          <img src="./assets/rent-tractors.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
-          <div style="position: relative; z-index: 1; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
-            <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); background: rgba(11,14,18,0.78); padding: 5px 9px;">For Rent &nbsp;·&nbsp; [Count] Units</span>
-            <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); background: rgba(11,14,18,0.78); padding: 5px 8px;">01</span>
-          </div>
+      <a href="BWEG%20Rentals.dc.html" class="bw-rent-tile bw-reveal" style="display: flex; flex-direction: column; justify-content: space-between; gap: 56px; padding: 28px; min-height: 260px; border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; background: rgba(255,255,255,0.03);">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+          <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange);">For Rent &nbsp;·&nbsp; [Count] Units</span>
+          <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4);">01</span>
         </div>
-        <div style="padding: 24px;">
-          <h3 style="color: white; font-size: 26px; font-weight: 500; letter-spacing: -0.03em; margin-bottom: 10px;">Tractors</h3>
+        <div>
+          <h3 style="color: white; font-size: 28px; font-weight: 500; letter-spacing: -0.03em; margin-bottom: 10px;">Tractors</h3>
           <p style="font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.6); margin-bottom: 18px;">Sub-compact through utility, daily to seasonal terms.</p>
           <span class="bw-rent-link bw-mono" style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: white; transition: color 200ms ease;">Rent Now →</span>
         </div>
       </a>
-      <a href="BWEG%20Rentals.dc.html" class="bw-rent-tile bw-reveal" data-reveal-delay="40" style="display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; background: rgba(255,255,255,0.03); overflow: hidden;">
-        <div class="bw-rent-photo" role="img" aria-label="Kubota mower available to rent" style="position: relative; aspect-ratio: 4/3; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; padding: 14px; transition: filter 240ms ease; overflow: hidden;">
-          <img src="./assets/rent-mowers.png" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
-          <div style="position: relative; z-index: 1; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
-            <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); background: rgba(11,14,18,0.78); padding: 5px 9px;">For Rent &nbsp;·&nbsp; [Count] Units</span>
-            <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); background: rgba(11,14,18,0.78); padding: 5px 8px;">02</span>
-          </div>
+      <a href="BWEG%20Rentals.dc.html" class="bw-rent-tile bw-reveal" data-reveal-delay="40" style="display: flex; flex-direction: column; justify-content: space-between; gap: 56px; padding: 28px; min-height: 260px; border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; background: rgba(255,255,255,0.03);">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+          <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange);">For Rent &nbsp;·&nbsp; [Count] Units</span>
+          <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4);">02</span>
         </div>
-        <div style="padding: 24px;">
-          <h3 style="color: white; font-size: 26px; font-weight: 500; letter-spacing: -0.03em; margin-bottom: 10px;">Mowers</h3>
+        <div>
+          <h3 style="color: white; font-size: 28px; font-weight: 500; letter-spacing: -0.03em; margin-bottom: 10px;">Mowers</h3>
           <p style="font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.6); margin-bottom: 18px;">Zero-turns and stand-ons for one-off or contract work.</p>
           <span class="bw-rent-link bw-mono" style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: white; transition: color 200ms ease;">Rent Now →</span>
         </div>
       </a>
-      <a href="BWEG%20Rentals.dc.html" class="bw-rent-tile bw-reveal" data-reveal-delay="80" style="display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; background: rgba(255,255,255,0.03); overflow: hidden;">
-        <div class="bw-rent-photo" role="img" aria-label="Kubota utility vehicle available to rent" style="position: relative; aspect-ratio: 4/3; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; padding: 14px; transition: filter 240ms ease; overflow: hidden;">
-          <img src="./assets/rent-utility.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
-          <div style="position: relative; z-index: 1; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
-            <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); background: rgba(11,14,18,0.78); padding: 5px 9px;">For Rent &nbsp;·&nbsp; [Count] Units</span>
-            <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); background: rgba(11,14,18,0.78); padding: 5px 8px;">03</span>
-          </div>
+      <a href="BWEG%20Rentals.dc.html" class="bw-rent-tile bw-reveal" data-reveal-delay="80" style="display: flex; flex-direction: column; justify-content: space-between; gap: 56px; padding: 28px; min-height: 260px; border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; background: rgba(255,255,255,0.03);">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+          <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange);">For Rent &nbsp;·&nbsp; [Count] Units</span>
+          <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4);">03</span>
         </div>
-        <div style="padding: 24px;">
-          <h3 style="color: white; font-size: 26px; font-weight: 500; letter-spacing: -0.03em; margin-bottom: 10px;">Utility Vehicles</h3>
+        <div>
+          <h3 style="color: white; font-size: 28px; font-weight: 500; letter-spacing: -0.03em; margin-bottom: 10px;">Utility Vehicles</h3>
           <p style="font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.6); margin-bottom: 18px;">Crew and material transport for the length of the job.</p>
           <span class="bw-rent-link bw-mono" style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: white; transition: color 200ms ease;">Rent Now →</span>
         </div>
       </a>
-      <a href="BWEG%20Rentals.dc.html" class="bw-rent-tile bw-reveal" data-reveal-delay="120" style="display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; background: rgba(255,255,255,0.03); overflow: hidden;">
-        <div class="bw-rent-photo" role="img" aria-label="Kubota attachment available to rent" style="position: relative; aspect-ratio: 4/3; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; padding: 14px; transition: filter 240ms ease; overflow: hidden;">
-          <img src="./assets/rent-attachments.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
-          <div style="position: relative; z-index: 1; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
-            <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); background: rgba(11,14,18,0.78); padding: 5px 9px;">For Rent &nbsp;·&nbsp; [Count] Units</span>
-            <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); background: rgba(11,14,18,0.78); padding: 5px 8px;">04</span>
-          </div>
+      <a href="BWEG%20Rentals.dc.html" class="bw-rent-tile bw-reveal" data-reveal-delay="120" style="display: flex; flex-direction: column; justify-content: space-between; gap: 56px; padding: 28px; min-height: 260px; border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; background: rgba(255,255,255,0.03);">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+          <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange);">For Rent &nbsp;·&nbsp; [Count] Units</span>
+          <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4);">04</span>
         </div>
-        <div style="padding: 24px;">
-          <h3 style="color: white; font-size: 26px; font-weight: 500; letter-spacing: -0.03em; margin-bottom: 10px;">Attachments</h3>
+        <div>
+          <h3 style="color: white; font-size: 28px; font-weight: 500; letter-spacing: -0.03em; margin-bottom: 10px;">Attachments</h3>
           <p style="font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.6); margin-bottom: 18px;">Loaders, backhoes, and cutters matched to your rental.</p>
           <span class="bw-rent-link bw-mono" style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: white; transition: color 200ms ease;">Rent Now →</span>
         </div>
@@ -595,8 +640,36 @@ img { display: block; max-width: 100%; }
     </div>
 
     <div style="padding-top: 44px; border-top: 1px solid rgba(255,255,255,0.14);">
+      <div class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 22px;">Rental Support Pages</div>
+      <div class="bw-rent5" style="margin-bottom: 44px;">
+        <a href="BWEG%20Rentals.dc.html" class="bw-rent-tile" style="display: flex; flex-direction: column; gap: 14px; padding: 20px; border: 1px solid rgba(255,255,255,0.18); border-radius: 8px;">
+          <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4);">01</span>
+          <span style="font-size: 15.5px; font-weight: 500; color: white; letter-spacing: -0.015em;">Rental Credit Application</span>
+          <span class="bw-rent-link bw-mono" style="font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: auto; transition: color 200ms ease;">Open →</span>
+        </a>
+        <a href="BWEG%20Rentals.dc.html" class="bw-rent-tile" style="display: flex; flex-direction: column; gap: 14px; padding: 20px; border: 1px solid rgba(255,255,255,0.18); border-radius: 8px;">
+          <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4);">02</span>
+          <span style="font-size: 15.5px; font-weight: 500; color: white; letter-spacing: -0.015em;">Rental Protection Program</span>
+          <span class="bw-rent-link bw-mono" style="font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: auto; transition: color 200ms ease;">Open →</span>
+        </a>
+        <a href="BWEG%20Rentals.dc.html" class="bw-rent-tile" style="display: flex; flex-direction: column; gap: 14px; padding: 20px; border: 1px solid rgba(255,255,255,0.18); border-radius: 8px;">
+          <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4);">03</span>
+          <span style="font-size: 15.5px; font-weight: 500; color: white; letter-spacing: -0.015em;">Rental Policy</span>
+          <span class="bw-rent-link bw-mono" style="font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: auto; transition: color 200ms ease;">Open →</span>
+        </a>
+        <a href="BWEG%20Rentals.dc.html" class="bw-rent-tile" style="display: flex; flex-direction: column; gap: 14px; padding: 20px; border: 1px solid rgba(255,255,255,0.18); border-radius: 8px;">
+          <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4);">04</span>
+          <span style="font-size: 15.5px; font-weight: 500; color: white; letter-spacing: -0.015em;">Rental Contact</span>
+          <span class="bw-rent-link bw-mono" style="font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: auto; transition: color 200ms ease;">Open →</span>
+        </a>
+        <a href="BWEG%20Rentals.dc.html" class="bw-rent-tile" style="display: flex; flex-direction: column; gap: 14px; padding: 20px; border: 1px solid rgba(255,255,255,0.18); border-radius: 8px;">
+          <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.4);">05</span>
+          <span style="font-size: 15.5px; font-weight: 500; color: white; letter-spacing: -0.015em;">Rental Attachments</span>
+          <span class="bw-rent-link bw-mono" style="font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-top: auto; transition: color 200ms ease;">Open →</span>
+        </a>
+      </div>
       <div style="display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;">
-        <p style="color: rgba(255,255,255,0.55); font-size: 13.5px; line-height: 1.5; max-width: 52ch;">Specific rental units, categories, and rates stay bracketed until the fleet is confirmed. The Rentals page, its category filter, and the rental request form are built and ready to receive it.</p>
+        <p style="color: rgba(255,255,255,0.55); font-size: 13.5px; line-height: 1.5; max-width: 52ch;">Specific rental units, categories, and rates stay bracketed until the fleet is confirmed. The catalog page, filters, and Rental Request flow are built and ready to receive it.</p>
         <a href="BWEG%20Rentals.dc.html" style="display: inline-flex; align-items: center; gap: 12px; padding: 18px 24px; background: var(--orange); color: white; font-weight: 600; font-size: 15px; border-radius: 2px;" style-hover="{{ orangeHoverStyle }}">
           Explore Rentals
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
@@ -606,60 +679,140 @@ img { display: block; max-width: 100%; }
   </div>
 </section>
 
-<!-- ===================== §03 LOCATIONS ===================== -->
+<!-- ===================== §04 LOCATIONS ===================== -->
 <section id="locations" style="background: var(--ink); color: white; padding: 140px 40px; border-top: 1px solid var(--ink-3);">
   <div style="max-width: 1440px; margin: 0 auto;">
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 80px; align-items: end;">
       <div>
         <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 40px;">
-          <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: white;">§03</span>
+          <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: white;">§04</span>
           <span style="width: 48px; height: 1px; background: white;"></span>
           <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.55);">Locations</span>
         </div>
         <h2 style="color: white; font-size: clamp(40px, 5.2vw, 72px); line-height: 0.98; letter-spacing: -0.035em; font-weight: 500; max-width: 14ch;">One Team, Every Location</h2>
       </div>
       <div style="padding-bottom: 12px;">
-        <p style="color: rgba(255,255,255,0.72); font-size: 17px; line-height: 1.55; max-width: 46ch;">Blue Water Equipment Group's Kubota dealership in Greer, South Carolina — sales, rentals, parts, and service in one place.</p>
+        <p style="color: rgba(255,255,255,0.72); font-size: 17px; line-height: 1.55; max-width: 46ch;">Blue Water Equipment Group connects Kubota dealerships across South Carolina, North Carolina, and Georgia into a single, dependable network, so the part or machine you need is never as far away as it looks.</p>
       </div>
     </div>
 
     <div style="display: grid; grid-template-columns: 1fr 1.3fr; gap: 64px; align-items: start;">
       <div style="border-top: 1px solid rgba(255,255,255,0.2);">
-        <div style="display: grid; grid-template-columns: 40px 1fr auto; gap: 20px; align-items: center; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,0.2);">
+        <div style="display: grid; grid-template-columns: 40px 1fr auto; gap: 20px; align-items: center; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
           <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.14em; color: rgba(255,255,255,0.42);">01</span>
           <div>
-            <div style="font-size: 20px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 4px;">Greer, SC</div>
-            <div class="bw-mono" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5);">3284 E Gap Creek Rd · Greenville County · SC 29651</div>
+            <div style="font-size: 20px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 4px;">Charleston</div>
+            <div class="bw-mono" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5);">Charleston Co. · SC</div>
           </div>
-          <a href="BWEG%20Equipment.dc.html" class="bw-mono" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.7);" style-hover="{{ whiteLinkHoverStyle }}">Inventory →</a>
+          <a href="#inventory" class="bw-mono" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.7);" style-hover="{{ whiteLinkHoverStyle }}">Inventory →</a>
         </div>
-        <a href="https://www.google.com/maps/dir/?api=1&destination=3284+E+Gap+Creek+Rd,+Greer,+SC+29651" target="_blank" style="display: inline-flex; align-items: center; gap: 12px; padding: 20px 24px; background: var(--orange); color: white; font-weight: 500; font-size: 14px; margin-top: 32px; border-radius: 2px;" style-hover="{{ orangeHoverStyle }}">
-          Get Directions
+        <div style="display: grid; grid-template-columns: 40px 1fr auto; gap: 20px; align-items: center; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+          <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.14em; color: rgba(255,255,255,0.42);">02</span>
+          <div>
+            <div style="font-size: 20px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 4px;">Columbia</div>
+            <div class="bw-mono" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5);">Richland Co. · SC</div>
+          </div>
+          <a href="#inventory" class="bw-mono" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.7);" style-hover="{{ whiteLinkHoverStyle }}">Inventory →</a>
+        </div>
+        <div style="display: grid; grid-template-columns: 40px 1fr auto; gap: 20px; align-items: center; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+          <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.14em; color: rgba(255,255,255,0.42);">03</span>
+          <div>
+            <div style="font-size: 20px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 4px;">Charlotte</div>
+            <div class="bw-mono" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5);">Mecklenburg Co. · NC</div>
+          </div>
+          <a href="#inventory" class="bw-mono" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.7);" style-hover="{{ whiteLinkHoverStyle }}">Inventory →</a>
+        </div>
+        <div style="display: grid; grid-template-columns: 40px 1fr auto; gap: 20px; align-items: center; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,0.1);">
+          <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.14em; color: rgba(255,255,255,0.42);">04</span>
+          <div>
+            <div style="font-size: 20px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 4px;">Raleigh</div>
+            <div class="bw-mono" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5);">Wake Co. · NC</div>
+          </div>
+          <a href="#inventory" class="bw-mono" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.7);" style-hover="{{ whiteLinkHoverStyle }}">Inventory →</a>
+        </div>
+        <div style="display: grid; grid-template-columns: 40px 1fr auto; gap: 20px; align-items: center; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,0.2);">
+          <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.14em; color: rgba(255,255,255,0.42);">05</span>
+          <div>
+            <div style="font-size: 20px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 4px;">Atlanta</div>
+            <div class="bw-mono" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5);">Fulton Co. · GA</div>
+          </div>
+          <a href="#inventory" class="bw-mono" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.7);" style-hover="{{ whiteLinkHoverStyle }}">Inventory →</a>
+        </div>
+        <a href="#locations" style="display: inline-flex; align-items: center; gap: 12px; padding: 20px 24px; background: var(--orange); color: white; font-weight: 500; font-size: 14px; margin-top: 32px; border-radius: 2px;" style-hover="{{ orangeHoverStyle }}">
+          Find a Location Near You
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
         </a>
       </div>
 
-      <div class="bw-reveal" style="position: relative; aspect-ratio: 5/6; background: #171B22; border: 1px solid var(--ink-3); overflow: hidden;">
-        <iframe src="https://www.google.com/maps?q=3284+E+Gap+Creek+Rd,+Greer,+SC+29651&output=embed" style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(0.15) contrast(1.05);" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="BWEG Greer, SC location map"></iframe>
+      <div class="bw-reveal" style="position: relative; aspect-ratio: 5/6; background: linear-gradient(180deg, #171B22 0%, #0F1218 100%); border: 1px solid var(--ink-3); overflow: hidden;">
+        <div style="position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 48px 48px;"></div>
+        <div style="position: absolute; top: 20px; left: 20px; display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,0.55);">
+          <span class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;">Coverage / SC · NC · GA</span>
+        </div>
+        <div style="position: absolute; top: 20px; right: 20px; color: rgba(255,255,255,0.42);" class="bw-mono">
+          <span style="font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;">34.0°N · 81.0°W</span>
+        </div>
+        <svg viewBox="0 0 258 206" style="position: absolute; inset: 0; width: 100%; height: 100%;" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+          <g transform="translate(-687.5,-439.5)" fill="rgba(39,67,115,0.14)" stroke="rgba(255,255,255,0.55)" stroke-width="1.1" stroke-linejoin="round" stroke-linecap="round">
+            <path d="M704,634L777,639C777,639 774.422,643.494 779,644C783.578,644.506 783,641 783,641C783,641 779.015,635.162 782,633C784.985,630.838 791,632 791,632L797,634L798,624L800,616L807,598L812,591L806,589L804,581L798,574L795,560L786,553L781,544L779,543L765,529L758,514L754,514L749,509L746,505L752,497L688,497L697,564C697,564 699.96,563.227 700,567C700.04,570.773 700,572 700,572L702,576L702,581L704,584L701,586C701,586 698.85,592.656 698,595C697.15,597.344 699,602 699,602L699,607L698,617L704,627L704,634Z"></path>
+            <path d="M814,588L819,585L825,578L828,574L832,574L841,568L846,560L851,558L855,554L858,547L864,538L867,532L873,531L843,502L814,502L813,497L811,493L807,495L806,491L772,490L754,497L751,502L749,505L755,511L760,512L768,528L775,534L779,539L787,545L786,549L796,557L799,566L800,572L804,574L807,581L808,587L814,588Z"></path>
+            <path d="M722,495L723,489L726,488L730,487L730,481L740,476L742,479L748,475L755,470L758,470L759,464L762,465L767,462L767,466L778,458L780,459L786,452L789,452L790,446C790,446 835.511,446.963 864,445C892.489,443.037 935,440 935,440L942,452L938,451L936,449L932,448L934,452L930,453L926,453L926,456L921,457L918,451L917,460L927,459L934,457L934,468L939,464L940,458L945,463L944,469L938,472L935,479L927,473L921,473L920,476L910,474L919,479L926,482L919,486L924,486L918,491L910,486L916,494L925,491L928,491L932,490L927,498L916,501L911,500L907,506L902,500L902,506L895,514L890,520L889,527L881,527L875,529L844,500L815,499L814,496L812,491L808,493L807,489L770,489L753,495L722,495Z"></path>
+          </g>
+          <g stroke="rgba(255,255,255,0.16)" stroke-width="0.6">
+            <line x1="129" y1="2" x2="129" y2="9"></line>
+            <line x1="129" y1="197" x2="129" y2="204"></line>
+            <line x1="2" y1="103" x2="9" y2="103"></line>
+            <line x1="249" y1="103" x2="256" y2="103"></line>
+          </g>
+          <g fill="rgba(255,255,255,0.42)" font-family="'Geist Mono', ui-monospace, monospace" font-size="7" letter-spacing="1.4">
+            <text x="115" y="30">GEORGIA</text>
+            <text x="105" y="80">NORTH CAROLINA</text>
+            <text x="55" y="150">SOUTH CAROLINA</text>
+          </g>
+          <g>
+            <circle cx="90" cy="178" r="7" fill="var(--orange)" opacity="0.14"></circle>
+            <circle cx="90" cy="178" r="1.8" fill="var(--orange)"></circle>
+          </g>
+          <g>
+            <circle cx="60" cy="145" r="7" fill="var(--orange)" opacity="0.14"></circle>
+            <circle cx="60" cy="145" r="1.8" fill="var(--orange)"></circle>
+          </g>
+          <g>
+            <circle cx="80" cy="95" r="7" fill="var(--orange)" opacity="0.14"></circle>
+            <circle cx="80" cy="95" r="1.8" fill="var(--orange)"></circle>
+          </g>
+          <g>
+            <circle cx="150" cy="90" r="7" fill="var(--orange)" opacity="0.14"></circle>
+            <circle cx="150" cy="90" r="1.8" fill="var(--orange)"></circle>
+          </g>
+          <g>
+            <circle cx="145" cy="50" r="7" fill="var(--orange)" opacity="0.14"></circle>
+            <circle cx="145" cy="50" r="1.8" fill="var(--orange)"></circle>
+          </g>
+          <g>
+            <circle cx="180" cy="82" r="7" fill="var(--orange)" opacity="0.14"></circle>
+            <circle cx="180" cy="82" r="1.8" fill="var(--orange)"></circle>
+          </g>
+        </svg>
         <div style="position: absolute; bottom: 20px; left: 20px; right: 20px; padding: 16px 20px; background: rgba(255,255,255,0.04); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: space-between; gap: 12px;">
           <div>
-            <div style="font-size: 14px; font-weight: 500; margin-bottom: 3px;">3284 E Gap Creek Rd, Greer, SC 29651</div>
+            <div style="font-size: 14px; font-weight: 500; margin-bottom: 3px;">14 locations across SC, NC &amp; GA</div>
             <div class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5);">Sales, rentals, parts &amp; service</div>
           </div>
-          <a href="https://www.google.com/maps/dir/?api=1&destination=3284+E+Gap+Creek+Rd,+Greer,+SC+29651" target="_blank" class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange);">Open →</a>
+          <a href="#locations" class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange);">Open →</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== §04 PARTS / SERVICE / FINANCING ===================== -->
+<!-- ===================== §05 PARTS / SERVICE / FINANCING ===================== -->
 <section id="parts" style="background: var(--paper); padding: 140px 40px;">
   <div style="max-width: 1440px; margin: 0 auto;">
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 88px; align-items: end;">
       <div>
         <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 40px;">
-          <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink);">§04</span>
+          <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink);">§05</span>
           <span style="width: 48px; height: 1px; background: var(--ink);"></span>
           <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted);">Parts · Service · Financing</span>
         </div>
@@ -675,7 +828,7 @@ img { display: block; max-width: 100%; }
         <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);">01&nbsp;/&nbsp;03</span>
         <h3 style="font-size: clamp(24px, 2.4vw, 32px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.1;">Genuine Kubota parts, in stock and ready.</h3>
         <p style="font-size: 15.5px; line-height: 1.55; color: var(--ink); max-width: 46ch;">Filters, hydraulics, cutting edges, and the small parts that keep a season on schedule. Dealer-network fulfillment, next-day where you need it.</p>
-        <a href="BWEG%20Parts.dc.html" class="bw-mono" style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); font-weight: 500; padding-top: 6px;" style-hover="{{ orangeTextHoverStyle }}">Order Parts →</a>
+        <a href="#parts" class="bw-mono" style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); font-weight: 500; padding-top: 6px;" style-hover="{{ orangeTextHoverStyle }}">Order Parts →</a>
       </div>
       <div id="service" class="bw-reveal" style="display: grid; grid-template-columns: 100px 1fr 1.4fr auto; gap: 40px; align-items: start; padding: 48px 0; border-bottom: 1px solid var(--line);">
         <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);">02&nbsp;/&nbsp;03</span>
@@ -687,7 +840,7 @@ img { display: block; max-width: 100%; }
         <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);">03&nbsp;/&nbsp;03</span>
         <h3 style="font-size: clamp(24px, 2.4vw, 32px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.1;">Financing built around your season.</h3>
         <p style="font-size: 15.5px; line-height: 1.55; color: var(--ink); max-width: 46ch;">Terms that flex with the crop cycle, project timeline, or seasonal cash flow — whether you're buying or renting. Pre-qualify online in minutes.</p>
-        <a href="BWEG%20Financing.dc.html" class="bw-mono" style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); font-weight: 500; padding-top: 6px;" style-hover="{{ orangeTextHoverStyle }}">Check My Rate →</a>
+        <a href="#finance" class="bw-mono" style="font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); font-weight: 500; padding-top: 6px;" style-hover="{{ orangeTextHoverStyle }}">Check My Rate →</a>
       </div>
     </div>
 
@@ -696,9 +849,45 @@ img { display: block; max-width: 100%; }
         Schedule Service
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
       </a>
-      <a href="BWEG%20Financing.dc.html" style="display: inline-flex; align-items: center; gap: 12px; padding: 17px 24px; background: transparent; color: var(--ink); border: 1px solid var(--ink); font-weight: 500; font-size: 14.5px; border-radius: 2px;" style-hover="{{ inkHoverStyle }}">
+      <a href="#finance" style="display: inline-flex; align-items: center; gap: 12px; padding: 17px 24px; background: transparent; color: var(--ink); border: 1px solid var(--ink); font-weight: 500; font-size: 14.5px; border-radius: 2px;" style-hover="{{ inkHoverStyle }}">
         Check My Rate
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== §06 FINAL CTA ===================== -->
+<section style="background: var(--paper); padding: 140px 40px; border-top: 1px solid var(--line);">
+  <div style="max-width: 1440px; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 80px; align-items: center;">
+      <div>
+        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 40px;">
+          <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink);">§06</span>
+          <span style="width: 48px; height: 1px; background: var(--ink);"></span>
+          <span class="bw-mono" style="font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted);">Start Here</span>
+        </div>
+        <h2 style="font-size: clamp(44px, 6.4vw, 96px); line-height: 0.96; letter-spacing: -0.04em; font-weight: 500; max-width: 14ch;">Ready to Find Your Machine?</h2>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <a href="#inventory" style="display: inline-flex; align-items: center; justify-content: space-between; gap: 12px; padding: 24px 28px; background: var(--orange); color: white; font-weight: 600; font-size: 17px; letter-spacing: -0.01em; border-radius: 2px;" style-hover="{{ orangeHoverStyle }}">
+          Search Inventory
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+        </a>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <a href="BWEG%20Rentals.dc.html" style="display: inline-flex; align-items: center; justify-content: space-between; gap: 10px; padding: 22px 22px; background: transparent; color: var(--ink); border: 1px solid var(--ink); font-weight: 500; font-size: 15px; border-radius: 2px;" style-hover="{{ inkHoverStyle }}">
+            Explore Rentals
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+          </a>
+          <a href="#locations" style="display: inline-flex; align-items: center; justify-content: space-between; gap: 10px; padding: 22px 22px; background: transparent; color: var(--ink); border: 1px solid var(--ink); font-weight: 500; font-size: 15px; border-radius: 2px;" style-hover="{{ inkHoverStyle }}">
+            Find Your Location
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+          </a>
+        </div>
+        <a href="tel:+18435550142" style="display: inline-flex; align-items: center; justify-content: space-between; gap: 12px; padding: 22px 28px; background: transparent; color: var(--ink); border: 1px solid var(--line); font-weight: 500; font-size: 15px; border-radius: 2px;" style-hover="{{ ghostHoverStyle }}">
+          <span>Talk to a Specialist</span>
+          <span class="bw-mono" style="font-size: 13px; letter-spacing: 0.02em;">(843) 555-0142</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -728,48 +917,33 @@ img { display: block; max-width: 100%; }
       </form>
     </div>
 
-    <div id="contact" class="bw-foot-contact" style="padding: 48px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+    <div style="padding: 56px 0; border-bottom: 1px solid rgba(255,255,255,0.08);">
+      <div class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: white; margin-bottom: 24px;">Our Locations &nbsp;·&nbsp; [Number] Total</div>
+      <div class="bw-locgrid">
+        <sc-for list="{{ locations }}" as="loc" hint-placeholder-count="7">
+          <div style="padding: 20px; border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; display: flex; flex-direction: column; gap: 10px;">
+            <div style="font-size: 16px; font-weight: 500; color: white; letter-spacing: -0.015em;">{{ loc.city }}</div>
+            <div class="bw-mono" style="font-size: 12px; letter-spacing: 0.04em; color: rgba(255,255,255,0.62);">{{ loc.phone }}</div>
+            <a href="#locations" class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.8);" style-hover="{{ whiteLinkHoverStyle }}">Learn More →</a>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div id="contact" style="padding: 48px 0; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
       <div>
         <div style="margin-bottom: 18px;">
           <img src="./logo-bw-white.png" alt="Blue Water Equipment Group" style="height: 36px; width: auto; display: block; opacity: 0.95;">
         </div>
-        <p style="font-size: 13.5px; line-height: 1.55; max-width: 40ch; color: rgba(255,255,255,0.62); margin-bottom: 24px;">Kubota sales, rentals, parts, and service in Greer, SC.</p>
-        <a href="tel:+18435550142" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 20px; background: var(--orange); color: white; font-weight: 600; font-size: 13.5px; border-radius: 2px;" style-hover="{{ orangeHoverStyle }}">
-          Call Us
-          <span class="bw-mono" style="font-size: 12.5px; letter-spacing: 0.02em; font-weight: 500;">(843)&nbsp;555-0142</span>
-        </a>
+        <p style="font-size: 13.5px; line-height: 1.55; max-width: 40ch; color: rgba(255,255,255,0.62);">Kubota sales, rentals, parts, and service across South Carolina, North Carolina, and Georgia.</p>
       </div>
-      <div>
-        <sc-if value="{{ contactSent }}" hint-placeholder-val="{{ false }}">
-          <div role="status" style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start; padding: 24px; border: 1px solid rgba(255,255,255,0.18); border-radius: 8px;">
-            <span class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange);">Message sent</span>
-            <p style="font-size: 15px; line-height: 1.55; color: white; max-width: 40ch;">Thanks, we'll get back to you shortly.</p>
-            <button type="button" onClick="{{ resetContact }}" class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.7);" style-hover="{{ whiteLinkHoverStyle }}">Send another →</button>
-          </div>
-        </sc-if>
-        <sc-if value="{{ showContact }}" hint-placeholder-val="{{ true }}">
-          <form onSubmit="{{ onContactSubmit }}" noValidate="{{ true }}" style="display: flex; flex-direction: column; gap: 12px;">
-            <div class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.55);">Send us a message</div>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-              <label style="display: flex; flex-direction: column; gap: 6px;">
-                <span style="font-size: 12.5px; color: rgba(255,255,255,0.7);">Name <span style="color: rgba(255,255,255,0.5);">(required)</span></span>
-                <input type="text" value="{{ cName }}" onInput="{{ setCName }}" autoComplete="name" aria-required="true" style="padding: 13px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); color: white; font-size: 14px; border-radius: 2px; outline: none;">
-              </label>
-              <label style="display: flex; flex-direction: column; gap: 6px;">
-                <span style="font-size: 12.5px; color: rgba(255,255,255,0.7);">Email <span style="color: rgba(255,255,255,0.5);">(required)</span></span>
-                <input type="email" value="{{ cEmail }}" onInput="{{ setCEmail }}" autoComplete="email" aria-required="true" style="padding: 13px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); color: white; font-size: 14px; border-radius: 2px; outline: none;">
-              </label>
-            </div>
-            <label style="display: flex; flex-direction: column; gap: 6px;">
-              <span style="font-size: 12.5px; color: rgba(255,255,255,0.7);">Message <span style="color: rgba(255,255,255,0.5);">(required)</span></span>
-              <textarea rows="3" value="{{ cMessage }}" onInput="{{ setCMessage }}" aria-required="true" style="padding: 13px 14px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.18); color: white; font-size: 14px; border-radius: 2px; outline: none; resize: vertical;"></textarea>
-            </label>
-            <sc-if value="{{ contactError }}" hint-placeholder-val="{{ false }}">
-              <p role="alert" style="font-size: 13px; line-height: 1.5; color: var(--orange); padding: 10px 12px; border: 1px solid rgba(232,93,4,0.6); border-radius: 2px;">{{ contactErrorMsg }}</p>
-            </sc-if>
-            <button type="submit" style="align-self: flex-start; padding: 14px 22px; background: white; color: var(--ink); font-weight: 600; font-size: 14px; border-radius: 2px;" style-hover="{{ whiteBtnHoverStyle }}">Send</button>
-          </form>
-        </sc-if>
+      <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+        <a href="tel:+18435550142" style="display: inline-flex; align-items: center; gap: 9px; padding: 13px 18px; background: var(--orange); color: white; font-weight: 600; font-size: 13.5px; border-radius: 2px;" style-hover="{{ orangeHoverStyle }}">Call Us</a>
+        <a href="#contact" style="display: inline-flex; align-items: center; gap: 9px; padding: 13px 18px; border: 1px solid rgba(255,255,255,0.24); color: white; font-weight: 500; font-size: 13.5px; border-radius: 2px;" style-hover="{{ heroSecondaryHoverStyle }}">Contact</a>
+        <form onSubmit="{{ onSiteSearch }}" style="display: flex; align-items: center; gap: 9px; padding: 11px 14px; border: 1px solid rgba(255,255,255,0.18); border-radius: 2px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4.2-4.2"></path></svg>
+          <input type="search" placeholder="Search site" aria-label="Search site" style="border: none; background: transparent; color: white; font-size: 13.5px; outline: none; width: 130px;">
+        </form>
       </div>
     </div>
 
@@ -810,28 +984,19 @@ img { display: block; max-width: 100%; }
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg>
       </button>
     </div>
-    <div ref="{{ chatBodyRef }}" role="log" aria-live="polite" style="height: 300px; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 14px; background: var(--paper);">
-      <sc-for list="{{ chatMsgs }}" as="m" hint-placeholder-count="1">
-        <div style="{{ m.wrapStyle }}">
-          <p style="{{ m.bubbleStyle }}">{{ m.text }}</p>
-          <sc-for list="{{ m.links }}" as="lnk" hint-placeholder-count="0">
-            <a href="{{ lnk.href }}" class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); font-weight: 500; padding-top: 2px;" style-hover="{{ orangeTextHoverStyle }}">{{ lnk.label }}</a>
-          </sc-for>
-        </div>
-      </sc-for>
+    <div style="padding: 18px; display: flex; flex-direction: column; gap: 14px; background: var(--paper);">
+      <p style="font-size: 14px; line-height: 1.5; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px 12px 12px 3px; color: var(--ink);">Tell me the job — acreage, terrain, budget, buying or renting — and I'll pull real units in stock near you.</p>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <span style="padding: 8px 12px; border: 1px solid var(--line); background: var(--surface); font-size: 12.5px; border-radius: 999px;">5 acres of pasture</span>
+        <span style="padding: 8px 12px; border: 1px solid var(--line); background: var(--surface); font-size: 12.5px; border-radius: 999px;">Rent for a weekend</span>
+      </div>
     </div>
-    <div style="display: flex; gap: 8px; flex-wrap: wrap; padding: 0 16px 14px; background: var(--paper);">
-      <sc-for list="{{ chatChips }}" as="chip" hint-placeholder-count="4">
-        <button type="button" onClick="{{ chip.onClick }}" style="padding: 8px 12px; border: 1px solid var(--line); background: var(--surface); font-size: 12.5px; border-radius: 999px; color: var(--ink);" style-hover="{{ ghostHoverStyle }}">{{ chip.label }}</button>
-      </sc-for>
-    </div>
-    <form onSubmit="{{ onChatSubmit }}" style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-top: 1px solid var(--line); background: var(--surface);">
-      <input type="text" value="{{ chatInput }}" onInput="{{ onChatInput }}" placeholder="Ask about a model, rentals, parts…" aria-label="Ask the equipment advisor" style="flex: 1; min-width: 0; border: none; background: transparent; font-size: 13.5px; color: var(--ink); outline: none;">
-      <button type="submit" aria-label="Send question" style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--orange); color: white; border-radius: 50%; flex-shrink: 0;">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-top: 1px solid var(--line); background: var(--surface);">
+      <span style="flex: 1; font-size: 13.5px; color: var(--muted-2);">Type your question…</span>
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: var(--orange); color: white; border-radius: 50%;">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
-      </button>
-    </form>
-    <p style="padding: 0 16px 14px; font-size: 11px; line-height: 1.45; color: var(--muted-2); background: var(--surface);">Answers come from BWEG's confirmed equipment list and store information.</p>
+      </span>
+    </div>
   </div>
   <button type="button" onClick="{{ toggleAdvisor }}" aria-label="Ask our AI Advisor" style="display: inline-flex; align-items: center; gap: 10px; padding: 14px 20px; background: var(--ink); color: white; border-radius: 999px; font-size: 14px; font-weight: 500; box-shadow: 0 14px 34px -18px rgba(8,34,56,0.8); align-self: flex-end;" style-hover="{{ inkHoverStyle }}">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
@@ -842,21 +1007,26 @@ img { display: block; max-width: 100%; }
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+const LOCATIONS = [
+  { city: 'Charleston, SC', phone: '[Phone]' },
+  { city: 'Columbia, SC', phone: '[Phone]' },
+  { city: 'Greenville, SC', phone: '[Phone]' },
+  { city: 'Charlotte, NC', phone: '[Phone]' },
+  { city: 'Raleigh, NC', phone: '[Phone]' },
+  { city: 'Atlanta, GA', phone: '[Phone]' },
+  { city: 'Savannah, GA', phone: '[Phone]' },
+];
+
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.chatBodyRef = React.createRef();
     this.state = {
       headerSolid: false,
       mode: 'buy',
       heroStage: 0,
-      advisorOpen: false, chat: [], chatInput: '',
+      advisorOpen: false,
       menu: null,
       subscribed: false,
-      heroCat: 'All Equipment',
-      heroLoc: 'All Locations',
-      contact: { name: '', email: '', message: '' },
-      contactSent: false, contactError: '',
       heroReady: false, heroFailed: false,
       p1Ready: false, p1Failed: false,
       p2Ready: false, p2Failed: false,
@@ -904,12 +1074,12 @@ class Component extends DCLogic {
     this._setupProductObserver('p1', {
       wrap: this.p1WrapRef, canvas: this.p1CanvasRef,
       framesRef: 'p1Frames', readyKey: 'p1Ready', failedKey: 'p1Failed',
-      barRef: this.p1LoaderBarRef, path: 'assets/sequences/l2502/', prefix: '', ext: 'jpg', pad: 3, count: 100,
+      barRef: this.p1LoaderBarRef, path: 'assets/sequences/product-01/', pad: 2, count: 60,
     });
     this._setupProductObserver('p2', {
       wrap: this.p2WrapRef, canvas: this.p2CanvasRef,
       framesRef: 'p2Frames', readyKey: 'p2Ready', failedKey: 'p2Failed',
-      barRef: this.p2LoaderBarRef, path: 'assets/sequences/zd1211/', prefix: '', ext: 'jpg', pad: 3, count: 100,
+      barRef: this.p2LoaderBarRef, path: 'assets/sequences/product-02/', pad: 2, count: 60,
     });
   }
 
@@ -1225,7 +1395,7 @@ class Component extends DCLogic {
       const s = {}; s[cfg.failedKey] = true; this.setState(s);
       this._showProductFallback(key);
     };
-    probe.src = cfg.path + (cfg.prefix != null ? cfg.prefix : 'frame-') + this._padFrame(1, cfg.pad) + '.' + (cfg.ext || 'png');
+    probe.src = cfg.path + 'frame-' + this._padFrame(1, cfg.pad) + '.png';
   }
 
   _showProductFallback(key) {
@@ -1254,7 +1424,7 @@ class Component extends DCLogic {
       const img = new Image();
       img.onload = () => { frames[i] = img; done(); };
       img.onerror = () => { frames[i] = null; done(); };
-      img.src = cfg.path + (cfg.prefix != null ? cfg.prefix : 'frame-') + this._padFrame(i + 1, cfg.pad) + '.' + (cfg.ext || 'png');
+      img.src = cfg.path + 'frame-' + this._padFrame(i + 1, cfg.pad) + '.png';
     }
   }
 
@@ -1333,21 +1503,6 @@ class Component extends DCLogic {
     this.setState({ menu: next, menuX: r ? r.left : 0, menuY: r ? r.bottom + 12 : 68 });
   }
 
-  _ask(text) {
-    const t = String(text || '').trim();
-    if (!t) return;
-    const eng = window.BWEGAdvisor;
-    const reply = eng ? eng.answer(t) : { text: 'One moment — the advisor is still loading.', links: [] };
-    const base = this.state.chat.length ? this.state.chat : [{ role: 'bot', text: (eng && eng.greeting) || '', links: [] }];
-    this.setState({
-      chat: base.concat([{ role: 'you', text: t, links: [] }, { role: 'bot', text: reply.text, links: reply.links || [] }]),
-      chatInput: '', advisorOpen: true,
-    }, () => {
-      const el = this.chatBodyRef.current;
-      if (el) el.scrollTop = el.scrollHeight;
-    });
-  }
-
   renderVals() {
     const solid = this.state.headerSolid;
     const isBuy = this.state.mode === 'buy';
@@ -1397,18 +1552,7 @@ class Component extends DCLogic {
       searchLabel: isBuy ? 'Search Inventory' : 'Search Rentals',
       setBuy: () => this.setState({ mode: 'buy' }),
       setRent: () => this.setState({ mode: 'rent' }),
-      heroCat: this.state.heroCat,
-      heroLoc: this.state.heroLoc,
-      setHeroCat: (e) => this.setState({ heroCat: e.target.value }),
-      setHeroLoc: (e) => this.setState({ heroLoc: e.target.value }),
-      onSearchSubmit: (e) => {
-        e.preventDefault();
-        const q = [];
-        if (this.state.heroCat !== 'All Equipment') q.push('category=' + encodeURIComponent(this.state.heroCat));
-        if (this.state.heroLoc !== 'All Locations') q.push('location=' + encodeURIComponent(this.state.heroLoc));
-        const page = isBuy ? 'BWEG%20Equipment.dc.html' : 'BWEG%20Rentals.dc.html';
-        window.location.href = page + (q.length ? '?' + q.join('&') : '');
-      },
+      onSearchSubmit: (e) => { e.preventDefault(); const el = document.getElementById(isBuy ? 'inventory' : 'rentals'); if (el) window.scrollTo({ top: el.offsetTop - 68, behavior: 'smooth' }); },
       buyBtnStyle: Object.assign({}, toggleBase, isBuy
         ? { background: 'white', color: 'var(--ink)' }
         : { background: 'transparent', color: 'rgba(255,255,255,0.66)' }),
@@ -1434,28 +1578,12 @@ class Component extends DCLogic {
       companyMenuStyle: menuPanel(this.state.menu === 'company'),
       menuItemHoverStyle: { background: 'rgba(255,255,255,0.08)', color: 'white' },
 
+      locations: LOCATIONS,
       newsletterLabel: this.state.subscribed ? 'Signed Up' : 'Sign Up',
       onNewsletterSubmit: (e) => { e.preventDefault(); this.setState({ subscribed: true }); },
       onSiteSearch: (e) => e.preventDefault(),
 
       openAdvisor: () => this.setState({ advisorOpen: true }),
-      chatBodyRef: this.chatBodyRef,
-      chatMsgs: (this.state.chat.length ? this.state.chat : [{ role: 'bot', text: (window.BWEGAdvisor && window.BWEGAdvisor.greeting) || 'Ask me about equipment, rentals, parts, service, or financing.', links: [] }]).map(m => ({
-        text: m.text,
-        links: m.links || [],
-        wrapStyle: { display: 'flex', flexDirection: 'column', gap: '6px', alignItems: m.role === 'you' ? 'flex-end' : 'flex-start' },
-        bubbleStyle: {
-          fontSize: '14px', lineHeight: 1.5, padding: '12px 14px', maxWidth: '86%',
-          background: m.role === 'you' ? 'var(--ink)' : 'var(--surface)',
-          color: m.role === 'you' ? 'white' : 'var(--ink)',
-          border: m.role === 'you' ? '1px solid var(--ink)' : '1px solid var(--line)',
-          borderRadius: m.role === 'you' ? '12px 12px 3px 12px' : '12px 12px 12px 3px',
-        },
-      })),
-      chatChips: ((window.BWEGAdvisor && window.BWEGAdvisor.suggestions) || []).map(s => ({ label: s, onClick: () => this._ask(s) })),
-      chatInput: this.state.chatInput,
-      onChatInput: (e) => this.setState({ chatInput: e.target.value }),
-      onChatSubmit: (e) => { e.preventDefault(); this._ask(this.state.chatInput); },
       closeAdvisor: () => this.setState({ advisorOpen: false }),
       toggleAdvisor: () => this.setState({ advisorOpen: !this.state.advisorOpen }),
       dockStyle: {
@@ -1463,7 +1591,7 @@ class Component extends DCLogic {
         display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '12px',
       },
       dockPanelStyle: {
-        width: '360px', maxWidth: 'calc(100vw - 40px)', background: 'var(--surface)', border: '1px solid var(--line)',
+        width: '340px', background: 'var(--surface)', border: '1px solid var(--line)',
         borderRadius: '12px', overflow: 'hidden',
         boxShadow: '0 26px 60px -30px rgba(8,34,56,0.55)',
         opacity: this.state.advisorOpen ? 1 : 0,
@@ -1492,29 +1620,6 @@ class Component extends DCLogic {
       ghostHoverStyle: { background: 'var(--ink)', color: 'white', borderColor: 'var(--ink)' },
       orangeTextHoverStyle: { color: 'var(--orange)' },
       whiteLinkHoverStyle: { color: 'white' },
-      whiteBtnHoverStyle: { background: 'rgba(255,255,255,0.86)' },
-      cName: this.state.contact.name,
-      cEmail: this.state.contact.email,
-      cMessage: this.state.contact.message,
-      setCName: (e) => this.setState({ contact: Object.assign({}, this.state.contact, { name: e.target.value }) }),
-      setCEmail: (e) => this.setState({ contact: Object.assign({}, this.state.contact, { email: e.target.value }) }),
-      setCMessage: (e) => this.setState({ contact: Object.assign({}, this.state.contact, { message: e.target.value }) }),
-      contactSent: this.state.contactSent,
-      showContact: !this.state.contactSent,
-      contactError: !!this.state.contactError,
-      contactErrorMsg: this.state.contactError,
-      resetContact: () => this.setState({ contactSent: false, contactError: '', contact: { name: '', email: '', message: '' } }),
-      onContactSubmit: (e) => {
-        e.preventDefault();
-        const c = this.state.contact;
-        const missing = [];
-        if (!c.name.trim()) missing.push('your name');
-        if (!c.email.trim()) missing.push('your email');
-        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(c.email.trim())) missing.push('a valid email address');
-        if (!c.message.trim()) missing.push('a message');
-        if (missing.length) { this.setState({ contactError: 'Please add ' + (missing.length > 1 ? missing.slice(0, -1).join(', ') + ' and ' + missing[missing.length - 1] : missing[0]) + '.' }); return; }
-        this.setState({ contactSent: true, contactError: '' });
-      },
       socialHoverStyle: { background: 'white', color: 'var(--ink)', borderColor: 'white' },
       footerLinkHoverStyle: { color: 'white' },
 
