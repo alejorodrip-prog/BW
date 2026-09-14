@@ -135,10 +135,21 @@ img { display: block; max-width: 100%; }
 
     <!-- Dropdown panels live outside the scrolling nav so nothing clips them; positioned from the trigger's measured rect. -->
     <div onMouseEnter="{{ cancelClose }}" onMouseLeave="{{ scheduleClose }}" style="{{ equipMenuStyle }}">
-      <a href="BWEG%20Equipment.dc.html" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Tractors</a>
-      <a href="BWEG%20Equipment.dc.html" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Mowers</a>
-      <a href="BWEG%20Equipment.dc.html" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Utility Vehicles</a>
-      <a href="BWEG%20Equipment.dc.html" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Attachments</a>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0;">
+        <div style="padding: 12px 0; border-right: 1px solid rgba(255,255,255,0.1);">
+          <div class="bw-mono" style="font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4); padding: 0 16px 8px;">Shop by Brand</div>
+          <a href="BWEG%20Equipment.dc.html?brand=Kubota" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Kubota</a>
+          <a href="BWEG%20Equipment.dc.html?brand=Stihl" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Stihl</a>
+          <a href="BWEG%20Equipment.dc.html?brand=Echo" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Echo</a>
+        </div>
+        <div style="padding: 12px 0;">
+          <div class="bw-mono" style="font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4); padding: 0 16px 8px;">Shop by Category</div>
+          <a href="BWEG%20Equipment.dc.html?category=Tractors" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Tractors</a>
+          <a href="BWEG%20Equipment.dc.html?category=Mowers" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Mowers</a>
+          <a href="BWEG%20Equipment.dc.html?category=Utility%20Vehicles" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Utility Vehicles</a>
+          <a href="BWEG%20Equipment.dc.html?category=Attachments" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Attachments</a>
+        </div>
+      </div>
     </div>
     <div onMouseEnter="{{ cancelClose }}" onMouseLeave="{{ scheduleClose }}" style="{{ partsMenuStyle }}">
       <a href="BWEG%20Parts.dc.html" onClick="{{ closeMenu }}" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Order Parts</a>
@@ -190,44 +201,23 @@ img { display: block; max-width: 100%; }
         </div>
 
         <h1 ref="{{ heroHeadRef }}" style="color: white; font-size: clamp(32px, 4.4vw, 64px); line-height: 1.0; letter-spacing: -0.04em; font-weight: 500; margin-bottom: 24px; max-width: 22ch;" class="bw-hero-el {{ headCls }}">
-          The Machine You Need. In Stock or Ready to Rent.
+          Your trusted Kubota dealer serving Greer, SC and the surrounding areas
         </h1>
 
         <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; flex-wrap: wrap; margin-bottom: 28px;">
           <p ref="{{ heroSubRef }}" style="color: rgba(255,255,255,0.78); font-size: 17px; line-height: 1.5; max-width: 50ch;" class="bw-hero-el {{ subCls }}">
-            Search live inventory across every Blue Water location, see every unit in 360°, and buy or rent in minutes without ever picking up the phone.
+            Search live inventory across our locations, and buy or rent in minutes.
           </p>
 
         </div>
 
-        <!-- Inline inventory search -->
-        <form ref="{{ heroSearchRef }}" onSubmit="{{ onSearchSubmit }}" style="display: flex; align-items: stretch; flex-wrap: wrap; gap: 1px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.18); backdrop-filter: blur(14px);" class="bw-hero-el {{ searchCls }}">
-          <div role="group" aria-label="Buy or rent" style="display: flex; padding: 6px; gap: 6px; background: rgba(11,14,18,0.72);">
-            <button type="button" onClick="{{ setBuy }}" aria-pressed="{{ isBuy }}" style="{{ buyBtnStyle }}">Buy</button>
-            <button type="button" onClick="{{ setRent }}" aria-pressed="{{ isRent }}" style="{{ rentBtnStyle }}">Rent</button>
-          </div>
-          <label style="display: flex; flex-direction: column; justify-content: center; gap: 2px; padding: 10px 18px; background: rgba(11,14,18,0.72); min-width: 210px; flex: 1 1 210px;">
-            <span class="bw-mono" style="font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5);">Category</span>
-            <select value="{{ heroCat }}" onChange="{{ setHeroCat }}" style="{{ selectStyle }}">
-              <option>All Equipment</option>
-              <option>Tractors</option>
-              <option>Mowers</option>
-              <option>Utility Vehicles</option>
-              <option>Attachments</option>
-            </select>
-          </label>
-          <label style="display: flex; flex-direction: column; justify-content: center; gap: 2px; padding: 10px 18px; background: rgba(11,14,18,0.72); min-width: 210px; flex: 1 1 210px;">
-            <span class="bw-mono" style="font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5);">Location</span>
-            <select value="{{ heroLoc }}" onChange="{{ setHeroLoc }}" style="{{ selectStyle }}">
-              <option>All Locations</option>
-              <option>Greer, SC</option>
-            </select>
-          </label>
-          <button type="submit" style="display: inline-flex; align-items: center; gap: 10px; padding: 18px 26px; background: var(--orange); color: white; font-weight: 600; font-size: 14px;" style-hover="{{ heroPrimaryHoverStyle }}">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4.2-4.2"></path></svg>
-            {{ searchLabel }}
-          </button>
-        </form>
+        <!-- Hero CTA -->
+        <div ref="{{ heroSearchRef }}" style="display: flex;" class="bw-hero-el {{ searchCls }}">
+          <a href="BWEG%20Equipment.dc.html" style="display: inline-flex; align-items: center; gap: 12px; padding: 18px 28px; background: var(--orange); color: white; font-weight: 600; font-size: 14px; border-radius: 2px;" style-hover="{{ heroPrimaryHoverStyle }}">
+            Kubota Equipment
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -505,10 +495,16 @@ img { display: block; max-width: 100%; }
         <div class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px;">Full Inventory</div>
         <div style="font-size: 22px; font-weight: 500; letter-spacing: -0.02em;">Every unit currently on our lots →</div>
       </div>
-      <a href="BWEG%20Equipment.dc.html" style="display: inline-flex; align-items: center; gap: 12px; padding: 16px 24px; background: var(--ink); color: white; font-weight: 500; font-size: 14px; border-radius: 2px;" style-hover="{{ inkHoverStyle }}">
-        View Full Inventory
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
-      </a>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a href="BWEG%20Equipment.dc.html?brand=Kubota" style="display: inline-flex; align-items: center; gap: 12px; padding: 16px 24px; background: var(--orange); color: white; border: 1px solid var(--orange); font-weight: 500; font-size: 14px; border-radius: 2px;" style-hover="{{ orangeGhostHoverStyle }}">
+          Kubota Equipment
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+        </a>
+        <a href="BWEG%20Equipment.dc.html" style="display: inline-flex; align-items: center; gap: 12px; padding: 16px 24px; background: var(--ink); color: white; font-weight: 500; font-size: 14px; border-radius: 2px;" style-hover="{{ inkHoverStyle }}">
+          View Full Inventory
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -854,6 +850,7 @@ class Component extends DCLogic {
       menu: null,
       subscribed: false,
       heroCat: 'All Equipment',
+      heroBrand: 'All Brands',
       heroLoc: 'All Locations',
       contact: { name: '', email: '', message: '' },
       contactSent: false, contactError: '',
@@ -899,17 +896,18 @@ class Component extends DCLogic {
     this._setupHeader();
     this._autoReveal();
     this._autoHover();
+    this._wireInternalLinks();
     this._setupReveals();
     this._loadHero();
     this._setupProductObserver('p1', {
       wrap: this.p1WrapRef, canvas: this.p1CanvasRef,
       framesRef: 'p1Frames', readyKey: 'p1Ready', failedKey: 'p1Failed',
-      barRef: this.p1LoaderBarRef, path: 'assets/sequences/l2502/', prefix: '', ext: 'jpg', pad: 3, count: 100,
+      barRef: this.p1LoaderBarRef, path: 'assets/sequences/l2502/', prefix: '', ext: 'png', pad: 3, count: 100,
     });
     this._setupProductObserver('p2', {
       wrap: this.p2WrapRef, canvas: this.p2CanvasRef,
       framesRef: 'p2Frames', readyKey: 'p2Ready', failedKey: 'p2Failed',
-      barRef: this.p2LoaderBarRef, path: 'assets/sequences/zd1211/', prefix: '', ext: 'jpg', pad: 3, count: 100,
+      barRef: this.p2LoaderBarRef, path: 'assets/sequences/zd1211/', prefix: '', ext: 'png', pad: 3, count: 100,
     });
   }
 
@@ -965,8 +963,38 @@ class Component extends DCLogic {
 
   // Hover lift + press feedback on padded links and buttons (CTAs), not text links.
   _autoHover() {
-    document.querySelectorAll('section a[style*="padding"], section button[style*="padding"], footer a[style*="padding"]')
+    document.querySelectorAll('section a[style*="padding"], section button[style*="padding"], footer a[style*="padding"], header a[style*="padding"], header button[style*="padding"], form button[style*="padding"]')
       .forEach(el => el.classList.add('bw-lift'));
+  }
+
+  // The preview host carries session params on the URL; plain relative links drop
+  // them, so internal navigation is routed through _go() which re-attaches them.
+  _carryParams() {
+    const out = new URLSearchParams();
+    try {
+      const here = new URLSearchParams(window.location.search);
+      ['t', 'srcmap', '_wr'].forEach(k => { if (here.has(k)) out.set(k, here.get(k)); });
+    } catch (err) { /* no params to carry */ }
+    return out;
+  }
+
+  _go(href) {
+    try {
+      const url = new URL(href, window.location.href);
+      this._carryParams().forEach((v, k) => { if (!url.searchParams.has(k)) url.searchParams.set(k, v); });
+      window.location.href = url.toString();
+    } catch (err) { window.location.href = href; }
+  }
+
+  _wireInternalLinks() {
+    this._on(document, 'click', (e) => {
+      const a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+      if (!a || a.target === '_blank') return;
+      const href = a.getAttribute('href') || '';
+      if (href.indexOf('.dc.html') === -1 && href.indexOf('index.html') === -1) return;
+      e.preventDefault();
+      this._go(href);
+    });
   }
 
   _setupReveals() {
@@ -1006,12 +1034,9 @@ class Component extends DCLogic {
 
   _padFrame(n, pad) { return String(n).padStart(pad, '0'); }
 
-  // Real hero sequence (61 frames) drops into assets/sequences/hero-v2/ as 01.jpg…61.jpg.
-  // Until then the build falls back to the existing frame set.
   _heroSets() {
     return [
-      { path: 'assets/sequences/hero-v2/', prefix: '', pad: 2, ext: 'jpg', total: 61 },
-      { path: 'assets/sequences/hero/', prefix: 'frame-', pad: 3, ext: 'png', total: 82 },
+      { path: 'assets/sequences/hero-v2/', prefix: '', pad: 3, ext: 'png', total: 81 },
     ];
   }
 
@@ -1398,16 +1423,19 @@ class Component extends DCLogic {
       setBuy: () => this.setState({ mode: 'buy' }),
       setRent: () => this.setState({ mode: 'rent' }),
       heroCat: this.state.heroCat,
+      heroBrand: this.state.heroBrand,
       heroLoc: this.state.heroLoc,
       setHeroCat: (e) => this.setState({ heroCat: e.target.value }),
+      setHeroBrand: (e) => this.setState({ heroBrand: e.target.value }),
       setHeroLoc: (e) => this.setState({ heroLoc: e.target.value }),
       onSearchSubmit: (e) => {
         e.preventDefault();
         const q = [];
+        if (this.state.heroBrand !== 'All Brands') q.push('brand=' + encodeURIComponent(this.state.heroBrand));
         if (this.state.heroCat !== 'All Equipment') q.push('category=' + encodeURIComponent(this.state.heroCat));
         if (this.state.heroLoc !== 'All Locations') q.push('location=' + encodeURIComponent(this.state.heroLoc));
         const page = isBuy ? 'BWEG%20Equipment.dc.html' : 'BWEG%20Rentals.dc.html';
-        window.location.href = page + (q.length ? '?' + q.join('&') : '');
+        this._go(page + (q.length ? '?' + q.join('&') : ''));
       },
       buyBtnStyle: Object.assign({}, toggleBase, isBuy
         ? { background: 'white', color: 'var(--ink)' }
@@ -1429,7 +1457,7 @@ class Component extends DCLogic {
       closeMenu: () => { clearTimeout(this._menuTimer); this.setState({ menu: null }); },
       scheduleClose: () => { clearTimeout(this._menuTimer); this._menuTimer = setTimeout(() => this.setState({ menu: null }), 140); },
       cancelClose: () => clearTimeout(this._menuTimer),
-      equipMenuStyle: menuPanel(this.state.menu === 'equip'),
+      equipMenuStyle: { ...menuPanel(this.state.menu === 'equip'), minWidth: '380px' },
       partsMenuStyle: menuPanel(this.state.menu === 'parts'),
       companyMenuStyle: menuPanel(this.state.menu === 'company'),
       menuItemHoverStyle: { background: 'rgba(255,255,255,0.08)', color: 'white' },
@@ -1490,6 +1518,7 @@ class Component extends DCLogic {
       orangeHoverStyle: { background: 'var(--orange-deep)' },
       inkHoverStyle: { background: 'var(--ink-2)', color: 'white' },
       ghostHoverStyle: { background: 'var(--ink)', color: 'white', borderColor: 'var(--ink)' },
+      orangeGhostHoverStyle: { background: 'var(--orange-deep)', borderColor: 'var(--orange-deep)' },
       orangeTextHoverStyle: { color: 'var(--orange)' },
       whiteLinkHoverStyle: { color: 'white' },
       whiteBtnHoverStyle: { background: 'rgba(255,255,255,0.86)' },

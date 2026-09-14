@@ -98,7 +98,7 @@ img { display: block; max-width: 100%; }
 <!-- ===================== HEADER ===================== -->
 <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(11,14,18,0.94); backdrop-filter: blur(14px) saturate(140%); border-bottom: 1px solid rgba(255,255,255,0.06); color: white;">
   <div style="max-width: 1440px; margin: 0 auto; padding: 0 40px; height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: nowrap;">
-    <a href="BWEG%20Homepage%20v4.dc.html" style="display: flex; align-items: center; flex-shrink: 0;" aria-label="Blue Water Equipment Group — home">
+    <a href="index.html" style="display: flex; align-items: center; flex-shrink: 0;" aria-label="Blue Water Equipment Group — home">
       <img src="./logo-bw-white.png" alt="Blue Water Equipment Group" style="height: 34px; width: auto; display: block;">
     </a>
     <nav aria-label="Primary" style="display: flex; align-items: center; gap: 22px; font-size: 13px; font-weight: 500; letter-spacing: -0.005em; flex: 1 1 auto; min-width: 0; overflow-x: auto; white-space: nowrap; flex-wrap: nowrap; scrollbar-width: none;">
@@ -123,7 +123,7 @@ img { display: block; max-width: 100%; }
           <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M6 9l6 6 6-6"></path></svg>
         </button>
       </div>
-      <a href="BWEG%20Homepage%20v4.dc.html#contact" style="flex-shrink: 0;">Contact</a>
+      <a href="index.html#contact" style="flex-shrink: 0;">Contact</a>
     </nav>
 
     <div onMouseEnter="{{ cancelClose }}" onMouseLeave="{{ scheduleClose }}" style="{{ equipMenuStyle }}">
@@ -138,7 +138,7 @@ img { display: block; max-width: 100%; }
     </div>
     <div onMouseEnter="{{ cancelClose }}" onMouseLeave="{{ scheduleClose }}" style="{{ companyMenuStyle }}">
       <a href="BWEG%20Company.dc.html" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">About Us</a>
-      <a href="BWEG%20Homepage%20v4.dc.html#locations" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Locations</a>
+      <a href="index.html#locations" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Locations</a>
       <a href="BWEG%20Company.dc.html#careers" style="display: block; padding: 10px 16px; font-size: 13px; color: rgba(255,255,255,0.82);" style-hover="{{ menuItemHoverStyle }}">Careers</a>
     </div>
 
@@ -162,7 +162,7 @@ img { display: block; max-width: 100%; }
   <div style="max-width: 1440px; margin: 0 auto;">
     <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 40px; flex-wrap: wrap;">
       <nav aria-label="Breadcrumb" class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.5);">
-        <a href="BWEG%20Homepage%20v4.dc.html" style="color: rgba(255,255,255,0.5);">Home</a>
+        <a href="index.html" style="color: rgba(255,255,255,0.5);">Home</a>
         <span style="padding: 0 8px;">/</span>
         <span style="color: white;">Apply For Financing</span>
       </nav>
@@ -486,6 +486,29 @@ const EMPTY_FORM = { name: '', email: '', phone: '', what: '', equip: '', amount
 /*PAGE-LOGIC-END*/
 
 class Component extends DCLogic {
+  // Preview host carries session params on the URL; relative links drop them, so
+  // internal navigation re-attaches them.
+  _wireLinkFix() {
+    this._linkFix = (e) => {
+      const a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+      if (!a || a.target === '_blank') return;
+      const href = a.getAttribute('href') || '';
+      if (href.indexOf('.dc.html') === -1 && href.indexOf('index.html') === -1) return;
+      e.preventDefault();
+      try {
+        const url = new URL(href, window.location.href);
+        const here = new URLSearchParams(window.location.search);
+        ['t', 'srcmap', '_wr'].forEach(k => { if (here.has(k) && !url.searchParams.has(k)) url.searchParams.set(k, here.get(k)); });
+        window.location.href = url.toString();
+      } catch (err) { window.location.href = href; }
+    };
+    document.addEventListener('click', this._linkFix);
+  }
+
+  componentWillUnmount() {
+    if (this._linkFix) document.removeEventListener('click', this._linkFix);
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -500,6 +523,7 @@ class Component extends DCLogic {
   }
 
   componentDidMount() {
+    this._wireLinkFix();
     const eng = window.BWEGAdvisor;
     this.setState({ chat: [{ role: 'bot', text: eng ? eng.greeting : 'Ask me about equipment, rentals, parts, service, or financing.', links: [] }] });
   }
