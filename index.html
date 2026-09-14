@@ -60,6 +60,10 @@ img { display: block; max-width: 100%; }
 .bw-index-row:hover .bw-index-title { color: var(--orange); }
 .bw-index-arrow { transition: transform 400ms cubic-bezier(0.22,1,0.36,1), color 200ms ease; }
 .bw-index-title { transition: color 200ms ease; }
+.bw-inv-cta { transition: background 200ms ease, box-shadow 200ms ease; }
+.bw-inv-cta:hover { box-shadow: 0 10px 24px rgba(11,14,18,0.18); }
+.bw-inv-cta:hover svg { transform: translateX(4px); }
+.bw-inv-cta svg { transition: transform 200ms cubic-bezier(0.22,1,0.36,1); }
 .bw-rent-tile { transition: background 240ms ease, border-color 240ms ease, transform 240ms cubic-bezier(0.22,1,0.36,1); }
 .bw-rent-tile:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.34); transform: translateY(-3px); }
 .bw-rent-tile:hover .bw-rent-link { color: var(--orange); }
@@ -80,6 +84,18 @@ img { display: block; max-width: 100%; }
 }
 .bw-card { transition: border-color 240ms ease, transform 240ms cubic-bezier(0.22,1,0.36,1); }
 .bw-card:hover { border-color: var(--ink); transform: translateY(-3px); }
+
+/* ---- Hover system (consistent site-wide) ---- */
+a, button { transition: color 160ms ease, background-color 200ms ease, border-color 200ms ease, opacity 160ms ease, box-shadow 200ms ease; }
+header nav a:hover, header nav button:hover { color: var(--orange) !important; }
+header a:hover img { opacity: 0.72; }
+footer a:hover { color: #FFFFFF !important; }
+a.bw-mono:hover { color: var(--orange) !important; }
+button[aria-label="Close advisor"]:hover { color: #FFFFFF !important; }
+button[aria-label="Send question"]:hover { background: var(--orange-deep) !important; }
+button.bw-num:hover { border-color: var(--orange) !important; }
+.bw-chip:hover { border-color: var(--orange) !important; color: var(--orange) !important; }
+.bw-pill:hover { border-color: var(--orange) !important; }
 @media (prefers-reduced-motion: reduce) {
   .bw-reveal { opacity: 1; transform: none; transition: none; }
   .bw-rise { opacity: 1; transform: none; transition: none; }
@@ -166,7 +182,7 @@ img { display: block; max-width: 100%; }
         Ask AI
       </button>
       <a href="tel:+18435550142" class="bw-mono" style="font-size: 12.5px; letter-spacing: 0.02em; font-weight: 500;">(843)&nbsp;555-0142</a>
-      <a href="BWEG%20Equipment.dc.html" style="{{ headerCtaStyle }}">
+      <a href="BWEG%20Equipment.dc.html" style="{{ headerCtaStyle }}" style-hover="{{ orangeHoverStyle }}">
         Search Inventory
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
       </a>
@@ -357,13 +373,13 @@ img { display: block; max-width: 100%; }
         </div>
 
         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-          <a href="#inventory" style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 20px; background: var(--ink); color: white; font-weight: 500; font-size: 13.5px; border-radius: 2px;" style-hover="{{ inkHoverStyle }}">
+          <a href="BWEG%20Equipment.dc.html" style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 20px; background: var(--ink); color: white; font-weight: 500; font-size: 13.5px; border-radius: 2px;" style-hover="{{ inkHoverStyle }}">
             Full Spec Sheet
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
           </a>
-          <button type="button" style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 20px; background: transparent; color: var(--ink); border: 1px solid var(--line); font-weight: 500; font-size: 13.5px; border-radius: 2px;" style-hover="{{ ghostHoverStyle }}">
+          <a href="#contact" style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 20px; background: transparent; color: var(--ink); border: 1px solid var(--line); font-weight: 500; font-size: 13.5px; border-radius: 2px;" style-hover="{{ ghostHoverStyle }}">
             Request&nbsp;a&nbsp;Quote
-          </button>
+          </a>
         </div>
       </div>
     </article>
@@ -407,13 +423,13 @@ img { display: block; max-width: 100%; }
         </div>
 
         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-          <a href="#inventory" style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 20px; background: var(--ink); color: white; font-weight: 500; font-size: 13.5px; border-radius: 2px;" style-hover="{{ inkHoverStyle }}">
+          <a href="BWEG%20Equipment.dc.html" style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 20px; background: var(--ink); color: white; font-weight: 500; font-size: 13.5px; border-radius: 2px;" style-hover="{{ inkHoverStyle }}">
             Full Spec Sheet
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
           </a>
-          <button type="button" style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 20px; background: transparent; color: var(--ink); border: 1px solid var(--line); font-weight: 500; font-size: 13.5px; border-radius: 2px;" style-hover="{{ ghostHoverStyle }}">
+          <a href="#contact" style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 20px; background: transparent; color: var(--ink); border: 1px solid var(--line); font-weight: 500; font-size: 13.5px; border-radius: 2px;" style-hover="{{ ghostHoverStyle }}">
             Request&nbsp;a&nbsp;Quote
-          </button>
+          </a>
         </div>
       </div>
       <div ref="{{ p2WrapRef }}" style="order: 2; position: relative; aspect-ratio: 16/11; background: linear-gradient(180deg, #EFECE3 0%, #DDD9CC 100%); overflow: hidden; cursor: grab; user-select: none; touch-action: pan-y; border: 1px solid var(--line);">
@@ -448,7 +464,7 @@ img { display: block; max-width: 100%; }
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
       <article class="bw-card bw-reveal" style="background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;">
         <div style="position: relative; aspect-ratio: 4/3; background: #F3F3F1; overflow: hidden;">
-          <img src="./uploads/Equipment Catalog/Kubota RTV-X Series.jpeg" alt="Kubota RTV-X Series utility vehicle" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          <img src="./assets/catalog/Kubota RTV-X Series.jpg" alt="Kubota RTV-X Series utility vehicle" style="width: 100%; height: 100%; object-fit: cover; display: block;">
         </div>
         <div style="padding: 22px;">
           <div class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px;">Utility Vehicles</div>
@@ -462,7 +478,7 @@ img { display: block; max-width: 100%; }
       </article>
       <article class="bw-card bw-reveal" data-reveal-delay="50" style="background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;">
         <div style="position: relative; aspect-ratio: 4/3; background: #F3F3F1; overflow: hidden;">
-          <img src="./uploads/Equipment Catalog/Kubota LA Series Loader.jpeg" alt="Kubota LA Series loader attachment on a compact tractor" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          <img src="./assets/catalog/Kubota LA Series Loader.jpg" alt="Kubota LA Series loader attachment on a compact tractor" style="width: 100%; height: 100%; object-fit: cover; display: block;">
         </div>
         <div style="padding: 22px;">
           <div class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px;">Attachments</div>
@@ -476,7 +492,7 @@ img { display: block; max-width: 100%; }
       </article>
       <article class="bw-card bw-reveal" data-reveal-delay="100" style="background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;">
         <div style="position: relative; aspect-ratio: 4/3; background: #F3F3F1; overflow: hidden;">
-          <img src="./uploads/Equipment Catalog/Kubota BX23S TLB.jpeg" alt="Kubota BX23S tractor-loader-backhoe" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          <img src="./assets/catalog/Kubota BX23S TLB.jpg" alt="Kubota BX23S tractor-loader-backhoe" style="width: 100%; height: 100%; object-fit: cover; display: block;">
         </div>
         <div style="padding: 22px;">
           <div class="bw-mono" style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px;">Tractors · Sub-Compact</div>
@@ -495,16 +511,10 @@ img { display: block; max-width: 100%; }
         <div class="bw-mono" style="font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px;">Full Inventory</div>
         <div style="font-size: 22px; font-weight: 500; letter-spacing: -0.02em;">Every unit currently on our lots →</div>
       </div>
-      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-        <a href="BWEG%20Equipment.dc.html?brand=Kubota" style="display: inline-flex; align-items: center; gap: 12px; padding: 16px 24px; background: var(--orange); color: white; border: 1px solid var(--orange); font-weight: 500; font-size: 14px; border-radius: 2px;" style-hover="{{ orangeGhostHoverStyle }}">
-          Kubota Equipment
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
-        </a>
-        <a href="BWEG%20Equipment.dc.html" style="display: inline-flex; align-items: center; gap: 12px; padding: 16px 24px; background: var(--ink); color: white; font-weight: 500; font-size: 14px; border-radius: 2px;" style-hover="{{ inkHoverStyle }}">
-          View Full Inventory
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
-        </a>
-      </div>
+      <a href="BWEG%20Equipment.dc.html" class="bw-inv-cta" style="display: inline-flex; align-items: center; gap: 12px; padding: 16px 26px; background: var(--ink); color: white; font-weight: 500; font-size: 14px; border-radius: 2px;" style-hover="{{ invCtaHoverStyle }}">
+        View Full Inventory
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
+      </a>
     </div>
   </div>
 </section>
@@ -902,12 +912,12 @@ class Component extends DCLogic {
     this._setupProductObserver('p1', {
       wrap: this.p1WrapRef, canvas: this.p1CanvasRef,
       framesRef: 'p1Frames', readyKey: 'p1Ready', failedKey: 'p1Failed',
-      barRef: this.p1LoaderBarRef, path: 'assets/sequences/l2502/', prefix: '', ext: 'png', pad: 3, count: 100,
+      barRef: this.p1LoaderBarRef, path: 'assets/sequences/l2502/', prefix: '', ext: 'jpg', pad: 3, count: 100,
     });
     this._setupProductObserver('p2', {
       wrap: this.p2WrapRef, canvas: this.p2CanvasRef,
       framesRef: 'p2Frames', readyKey: 'p2Ready', failedKey: 'p2Failed',
-      barRef: this.p2LoaderBarRef, path: 'assets/sequences/zd1211/', prefix: '', ext: 'png', pad: 3, count: 100,
+      barRef: this.p2LoaderBarRef, path: 'assets/sequences/zd1211/', prefix: '', ext: 'jpg', pad: 3, count: 100,
     });
   }
 
@@ -1036,7 +1046,7 @@ class Component extends DCLogic {
 
   _heroSets() {
     return [
-      { path: 'assets/sequences/hero-v2/', prefix: '', pad: 3, ext: 'png', total: 81 },
+      { path: 'assets/sequences/hero-v2/', prefix: '', pad: 3, ext: 'jpg', total: 81 },
     ];
   }
 
@@ -1517,6 +1527,7 @@ class Component extends DCLogic {
       heroSecondaryHoverStyle: { background: 'rgba(255,255,255,0.08)' },
       orangeHoverStyle: { background: 'var(--orange-deep)' },
       inkHoverStyle: { background: 'var(--ink-2)', color: 'white' },
+      invCtaHoverStyle: { background: 'var(--orange)' },
       ghostHoverStyle: { background: 'var(--ink)', color: 'white', borderColor: 'var(--ink)' },
       orangeGhostHoverStyle: { background: 'var(--orange-deep)', borderColor: 'var(--orange-deep)' },
       orangeTextHoverStyle: { color: 'var(--orange)' },

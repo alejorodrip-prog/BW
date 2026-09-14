@@ -69,6 +69,18 @@ img { display: block; max-width: 100%; }
   .bw-band { grid-template-columns: 1fr; gap: 32px; }
   .bw-formgrid { grid-template-columns: 1fr; }
 }
+
+/* ---- Hover system (consistent site-wide) ---- */
+a, button { transition: color 160ms ease, background-color 200ms ease, border-color 200ms ease, opacity 160ms ease, box-shadow 200ms ease; }
+header nav a:hover, header nav button:hover { color: var(--orange) !important; }
+header a:hover img { opacity: 0.72; }
+footer a:hover { color: #FFFFFF !important; }
+a.bw-mono:hover { color: var(--orange) !important; }
+button[aria-label="Close advisor"]:hover { color: #FFFFFF !important; }
+button[aria-label="Send question"]:hover { background: var(--orange-deep) !important; }
+button.bw-num:hover { border-color: var(--orange) !important; }
+.bw-chip:hover { border-color: var(--orange) !important; color: var(--orange) !important; }
+.bw-pill:hover { border-color: var(--orange) !important; }
 @media (prefers-reduced-motion: reduce) {
   .bw-unit { animation: none; }
   .bw-lift, .bw-lift:hover, .bw-lift:active { transform: none; transition: none; }
@@ -185,7 +197,7 @@ img { display: block; max-width: 100%; }
     <div role="group" aria-label="Filter rentals by category" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
       <span class="bw-mono" style="font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); padding-right: 4px;">Category</span>
       <sc-for list="{{ pills }}" as="pill" hint-placeholder-count="5">
-        <button type="button" onClick="{{ pill.onClick }}" aria-pressed="{{ pill.active }}" class="bw-lift" style="{{ pill.style }}">{{ pill.label }}</button>
+        <button type="button" onClick="{{ pill.onClick }}" aria-pressed="{{ pill.active }}" class="bw-lift bw-pill" style="{{ pill.style }}">{{ pill.label }}</button>
       </sc-for>
     </div>
     <div class="bw-mono" style="font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-2);">{{ resultLabel }}</div>

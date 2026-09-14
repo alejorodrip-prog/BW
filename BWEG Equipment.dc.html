@@ -64,6 +64,18 @@ img { display: block; max-width: 100%; }
   .bw-grid3 { grid-template-columns: 1fr; }
   .bw-band { grid-template-columns: 1fr; gap: 32px; }
 }
+
+/* ---- Hover system (consistent site-wide) ---- */
+a, button { transition: color 160ms ease, background-color 200ms ease, border-color 200ms ease, opacity 160ms ease, box-shadow 200ms ease; }
+header nav a:hover, header nav button:hover { color: var(--orange) !important; }
+header a:hover img { opacity: 0.72; }
+footer a:hover { color: #FFFFFF !important; }
+a.bw-mono:hover { color: var(--orange) !important; }
+button[aria-label="Close advisor"]:hover { color: #FFFFFF !important; }
+button[aria-label="Send question"]:hover { background: var(--orange-deep) !important; }
+button.bw-num:hover { border-color: var(--orange) !important; }
+.bw-chip:hover { border-color: var(--orange) !important; color: var(--orange) !important; }
+.bw-pill:hover { border-color: var(--orange) !important; }
 @media (prefers-reduced-motion: reduce) {
   .bw-unit { animation: none; }
   .bw-lift, .bw-lift:hover, .bw-lift:active { transform: none; transition: none; }
@@ -197,7 +209,7 @@ img { display: block; max-width: 100%; }
         </div>
       </div>
       <sc-for list="{{ activeChips }}" as="chip" hint-placeholder-count="0">
-        <button type="button" onClick="{{ chip.onRemove }}" style="display: inline-flex; align-items: center; gap: 8px; padding: 9px 13px; border-radius: 999px; background: var(--ink); color: white; font-size: 12.5px; font-weight: 500;">
+        <button type="button" class="bw-chip" onClick="{{ chip.onRemove }}" style="display: inline-flex; align-items: center; gap: 8px; padding: 9px 13px; border-radius: 999px; background: var(--ink); color: white; font-size: 12.5px; font-weight: 500;">
           {{ chip.label }}
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg>
         </button>
@@ -604,7 +616,7 @@ class Component extends DCLogic {
       groupSeries: u.group + ' · ' + u.series,
       hasPhoto: !!photo,
       noPhoto: !photo,
-      image: photo ? './uploads/Equipment Catalog/' + photo : null,
+      image: photo ? './assets/catalog/' + photo.replace(/\.jpeg$/, '.jpg') : null,
       photoNote: 'Photo pending: ' + u.display_name + ', ' + (u.subcategory ? u.subcategory + ' ' : '') + u.group.toLowerCase().replace(/s$/, ''),
       alt: photo ? u.display_name + ' — ' + u.series : 'Product photo pending — will show the ' + u.display_name + ', a ' + u.group.toLowerCase().replace(/s$/, '') + ' in the ' + u.series + ', in a working Southeast environment',
       detailsHref: href,

@@ -73,6 +73,18 @@ img { display: block; max-width: 100%; }
   .bw-band { grid-template-columns: 1fr; gap: 32px; }
   .bw-formgrid { grid-template-columns: 1fr; }
 }
+
+/* ---- Hover system (consistent site-wide) ---- */
+a, button { transition: color 160ms ease, background-color 200ms ease, border-color 200ms ease, opacity 160ms ease, box-shadow 200ms ease; }
+header nav a:hover, header nav button:hover { color: var(--orange) !important; }
+header a:hover img { opacity: 0.72; }
+footer a:hover { color: #FFFFFF !important; }
+a.bw-mono:hover { color: var(--orange) !important; }
+button[aria-label="Close advisor"]:hover { color: #FFFFFF !important; }
+button[aria-label="Send question"]:hover { background: var(--orange-deep) !important; }
+button.bw-num:hover { border-color: var(--orange) !important; }
+.bw-chip:hover { border-color: var(--orange) !important; color: var(--orange) !important; }
+.bw-pill:hover { border-color: var(--orange) !important; }
 @media (prefers-reduced-motion: reduce) {
   .bw-unit { animation: none; }
   .bw-lift, .bw-lift:hover, .bw-lift:active { transform: none; transition: none; }
@@ -251,7 +263,7 @@ img { display: block; max-width: 100%; }
       <h2 style="font-size: clamp(28px, 3.2vw, 42px); font-weight: 500; letter-spacing: -0.035em; margin-bottom: 18px; max-width: 20ch;">Join the Team</h2>
       <p style="font-size: 16.5px; line-height: 1.6; color: var(--muted); max-width: 46ch;">[Open positions pending. Check back soon, or reach out directly.]</p>
     </div>
-    <a href="#contact" class="bw-lift" style="display: inline-flex; align-items: center; gap: 12px; padding: 17px 24px; background: var(--ink); color: white; font-weight: 500; font-size: 14.5px; border-radius: 2px;" style-hover="{{ inkHoverStyle }}">
+    <a href="index.html#contact" class="bw-lift" style="display: inline-flex; align-items: center; gap: 12px; padding: 17px 24px; background: var(--ink); color: white; font-weight: 500; font-size: 14.5px; border-radius: 2px;" style-hover="{{ inkHoverStyle }}">
       Contact Us About Careers
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"><path d="M5 12h14"></path><path d="M13 5l7 7-7 7"></path></svg>
     </a>
